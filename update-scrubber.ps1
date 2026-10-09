@@ -1,6 +1,6 @@
 param(
     [string]$AssetsDir = "$PSScriptRoot\assets",
-    [string]$CssFile = "$PSScriptRoot\youtube-enhancer-theme.css"
+    [string]$CssFile = "$PSScriptRoot\css\youtube-enhancer-theme.css"
 )
 
 # Look for image files in the assets folder
