@@ -32,8 +32,17 @@
         --yt-sans-font: 'Nunito', 'Segoe UI', sans-serif !important;
         --ytd-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
         --yt-title-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+        --yt-spec-typography-title-1-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+        --yt-spec-typography-title-2-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+        --yt-spec-typography-title-3-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+        --yt-spec-typography-body-1-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+        --yt-spec-typography-body-2-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+        --yt-spec-typography-caption-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+        --yt-spec-typography-button-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+        --yt-spec-typography-label-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+        --ytd-user-comment-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
       }
-      yt-formatted-string, span.yt-core-attributed-string, #video-title, #channel-name, #description, #content-text, button, input {
+      h1, h2, h3, h4, p, a, span, yt-formatted-string, yt-formatted-string span, yt-core-attributed-string, yt-core-attributed-string span, .yt-core-attributed-string, .yt-spec-button-shape-next__button-text-content, #video-title, #channel-name, #description, #content-text, #owner-sub-count, #metadata-line span, button, input {
         font-family: 'Nunito', 'Segoe UI', sans-serif !important;
       }
     `;

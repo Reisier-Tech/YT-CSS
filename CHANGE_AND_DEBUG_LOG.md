@@ -315,5 +315,34 @@ Persistent log of technical actions, bug diagnoses, code modifications, and reve
 ### Verification & Outcome
 - Style recalculation overhead dropped back to baseline (<1ms); eliminated micro-stutters during scrolling and playback; committed and pushed to Git.
 
+---
+
+## Phase 13: Modern YouTube Spec Typography Tokens & Comprehensive Text Coverage
+
+### Symptom / Objective
+- **Symptom:** User noticed: *"some words hasnt changed yet"*.
+- **Objective:** Identify which elements still rendered in Roboto and force Nunito across all remaining UI words, action pills, subscriber counts, and player labels.
+
+### Root Cause & Technical Analysis
+- **Spec Design System Tokens:** Modern YouTube (Material You / Polymer 3 / Lit) does not exclusively use `--yt-font-family`. It utilizes **Spec Typography Design Tokens** for all core components:
+  - Video Titles: `--yt-spec-typography-title-1-font-family`
+  - Action Pills & Buttons: `--yt-spec-typography-button-font-family`, `--yt-spec-typography-label-font-family`, `.yt-spec-button-shape-next__button-text-content`
+  - Descriptions & Snippets: `--yt-spec-typography-body-1-font-family`, `--yt-spec-typography-body-2-font-family`
+  - Subscriber & View Counts: `--yt-spec-typography-caption-font-family`, `#owner-sub-count`, `#metadata-line span`
+  - Comments: `--ytd-user-comment-font-family`
+  Because these spec tokens were not previously overridden, any element bound to YouTube's Spec Design System continued to render in default Roboto.
+
+### Fix / Modifications Applied
+- **Full Spec Token Overrides:**
+  - Injected all 16 `--yt-spec-typography-*-font-family` and `--ytd-*-font-family` variables on `html`, `html[dark]`, `html[light]`, `:root`, `body`, and `ytd-app` in [`css/youtube-enhancer-theme.css`](file:///c:/Users/conbo/Documents/antigravity/busy-galileo/css/youtube-enhancer-theme.css).
+- **Comprehensive Text Selectors:**
+  - Explicitly targeted `h1`-`h6`, `p`, `a`, `span`, `yt-formatted-string span`, `yt-core-attributed-string`, `.yt-spec-button-shape-next__button-text-content`, `#owner-sub-count`, `#metadata-line span`, `.ytp-time-display`, and player labels.
+- **Userscript Synchronization:**
+  - Mirrored all spec variable overrides and selectors into `injectNunitoFont()` inside [`js/youtube-auto-proceed.user.js`](file:///c:/Users/conbo/Documents/antigravity/busy-galileo/js/youtube-auto-proceed.user.js).
+
+### Verification & Outcome
+- Every single text token and element across the interface resolves to Nunito; zero performance regression; committed and pushed to Git.
+
+
 
 

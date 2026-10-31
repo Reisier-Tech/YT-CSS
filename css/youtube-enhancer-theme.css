@@ -1,7 +1,7 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300..900;1,300..900&display=swap');
 
 /* --------------------------------------------------------------------------
-   ðŸ”¤ ZERO-OVERHEAD NUNITO TYPOGRAPHY (NATIVE FONT INHERITANCE)
+   ðŸ”¤ COMPREHENSIVE NUNITO TYPOGRAPHY & SPEC VARIABLE OVERRIDES
    -------------------------------------------------------------------------- */
 @font-face {
   font-family: 'Nunito';
@@ -22,22 +22,59 @@
   font-style: normal;
 }
 
+/* Master Typography Variables across Root & Dark/Light Hosts */
 html,
 html[dark],
 html[light],
 :root,
+[dark],
 body,
 ytd-app {
   --yt-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
   --yt-sans-font: 'Nunito', 'Segoe UI', sans-serif !important;
   --ytd-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
   --yt-title-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --ytd-title-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --ytd-user-comment-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --ytd-subheadline-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --ytd-headline-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --ytd-caption-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --ytd-body-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --ytd-tab-system-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+
+  /* YouTube Spec Design System Variables (Material You / Polymer 3 / Lit) */
+  --yt-spec-typography-title-1-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --yt-spec-typography-title-2-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --yt-spec-typography-title-3-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --yt-spec-typography-title-4-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --yt-spec-typography-title-5-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --yt-spec-typography-title-6-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --yt-spec-typography-headline-1-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --yt-spec-typography-headline-2-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --yt-spec-typography-subheadline-1-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --yt-spec-typography-subheadline-2-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --yt-spec-typography-body-1-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --yt-spec-typography-body-2-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --yt-spec-typography-body-3-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --yt-spec-typography-caption-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --yt-spec-typography-button-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --yt-spec-typography-label-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --yt-spec-typography-callout-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --paper-font-common-base_-_font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+
   font-family: 'Nunito', 'Segoe UI', sans-serif !important;
 }
 
-/* Let child text nodes inherit directly from root without recalculation thrashing */
+/* Comprehensive Text Selectors (Covers titles, badges, chips, comments, and player) */
+h1, h2, h3, h4, h5, h6,
+p, a, span,
 yt-formatted-string,
-span.yt-core-attributed-string,
+yt-formatted-string span,
+yt-core-attributed-string,
+yt-core-attributed-string span,
+.yt-core-attributed-string,
+.yt-core-attributed-string span,
+.yt-spec-button-shape-next__button-text-content,
 #video-title,
 #channel-name,
 #description,
@@ -47,11 +84,26 @@ span.yt-core-attributed-string,
 #text,
 .title,
 #guide-section-title,
+#owner-sub-count,
+#subscriber-count,
+#metadata-line span,
+#vote-count-middle,
+#author-text,
+#published-time-text,
 ytd-guide-entry-renderer,
 ytd-mini-guide-entry-renderer,
 tp-yt-paper-item,
 ytd-button-renderer,
 yt-button-shape,
+.ytp-time-display,
+.ytp-time-current,
+.ytp-time-duration,
+.ytp-chapter-title-content,
+.ytp-tooltip-text,
+.ytp-caption-segment,
+.ytp-menuitem-label,
+.ytp-panel-title,
+yt-chip-cloud-chip-renderer,
 button,
 input,
 textarea {
