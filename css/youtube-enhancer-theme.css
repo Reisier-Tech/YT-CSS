@@ -1,3 +1,26 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300..900;1,300..900&display=swap');
+
+/* --------------------------------------------------------------------------
+   ðŸ”¤ GLOBAL NUNITO TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+*,
+html,
+body,
+ytd-app,
+yt-formatted-string,
+span.yt-core-attributed-string,
+#video-title,
+#channel-name,
+#description,
+#content-text,
+#title,
+#text,
+input,
+textarea,
+button {
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
 /* ==========================================================================
    âœ¨ AERO-NEO MODERN THEME FOR YOUTUBE (Enhancer for YouTube / Stylus)
    ==========================================================================
@@ -11,6 +34,10 @@
    Tweak colors here to customize your look instantly!
    -------------------------------------------------------------------------- */
 :root {
+  /* Global Font Overrides */
+  --yt-font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  --yt-sans-font: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  --ytd-font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   /* [Preset 1: Neon Violet / Rose (Default)] */
   --accent-primary: #ba2df4;
   --accent-secondary: #ff3366;

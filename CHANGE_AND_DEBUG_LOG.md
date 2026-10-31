@@ -241,3 +241,29 @@ Persistent log of technical actions, bug diagnoses, code modifications, and reve
 
 ### Verification & Outcome
 - Viewport width constrained strictly to 100vw; arrow key seeking no longer triggers horizontal panning; video rendering overhead eliminated.
+
+---
+
+## Phase 10: Global Nunito Typography Integration & Tabliss Theme Retirement
+
+### Symptom / Objective
+- **Symptom:** User requested: *"can u change the font to nunito"* and *"ah and abond the tabliss theme"*.
+- **Objective:** Apply the modern, rounded Google Font `Nunito` across all YouTube UI elements, titles, comments, and buttons; retire the Tabliss theme while maintaining zero-risk rollback archives.
+
+### Root Cause & Technical Analysis
+1. **Typography Scope:** YouTube renders text using custom elements (`yt-formatted-string`, `span.yt-core-attributed-string`) and shadows font variables (`--yt-font-family`, `--yt-sans-font`, `--ytd-font-family`). Overriding YouTube's default Roboto font requires injecting a high-priority `@import` rule for `Nunito` (weights 300 to 900) and rebinding root CSS typography variables alongside global element rules.
+2. **Safe Deletion Protocol:** In accordance with top-restricted safety rules, files cannot be destroyed without a verified, independent backup. The Tabliss files were mirrored into `.backup/tabliss/` prior to removal from the active CSS directory.
+
+### Fix / Modifications Applied
+- **CSS Typography:**
+  - Injected Google Fonts `@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300..900;1,300..900&display=swap');` into [`css/youtube-enhancer-theme.css`](file:///c:/Users/conbo/Documents/antigravity/busy-galileo/css/youtube-enhancer-theme.css).
+  - Overrode `--yt-font-family`, `--yt-sans-font`, and `--ytd-font-family` with `'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important`.
+  - Added global tag rules applying Nunito to `ytd-app`, `yt-formatted-string`, `#video-title`, `#channel-name`, `#description`, `#content-text`, and buttons.
+- **Tabliss Retirement:**
+  - Backed up `tabliss-enhancer.css` and `tabliss-enhancer.min.css` to `.backup/tabliss/`.
+  - Removed files from active git tracking (`git rm css/tabliss-enhancer.css css/tabliss-enhancer.min.css`).
+  - Added `.backup/` to `.gitignore`.
+
+### Verification & Outcome
+- Verified font definitions in CSS; updated theme copied to clipboard; git status confirmed removal of Tabliss and tracking of Nunito typography.
+
