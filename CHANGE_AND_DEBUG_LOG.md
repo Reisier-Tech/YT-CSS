@@ -267,3 +267,28 @@ Persistent log of technical actions, bug diagnoses, code modifications, and reve
 ### Verification & Outcome
 - Verified font definitions in CSS; updated theme copied to clipboard; git status confirmed removal of Tabliss and tracking of Nunito typography.
 
+---
+
+## Phase 11: Nunito Typography Deep Specificity & CSP Local Font Binding
+
+### Symptom / Objective
+- **Symptom:** User reported *"still the same font"* after initial CSS font configuration.
+- **Objective:** Diagnose why Nunito failed to render on YouTube and implement a bulletproof mechanism to force Nunito across all elements.
+
+### Root Cause & Technical Analysis
+1. **`html[dark]` Specificity Collision:** YouTube hardcodes `--yt-font-family: "Roboto", "Arial", sans-serif;` on `html[dark]`. Because `html[dark]` has specificity (0, 1, 1), it completely overrides `:root` variables (specificity 0, 1, 0).
+2. **CSP Sandbox Blocking `@import`:** Enhancer for YouTube injects custom CSS inside an inline `<style>` block. YouTube's strict Content Security Policy (`style-src` / `font-src`) blocks external network `@import` requests from `fonts.googleapis.com` inside extension style tags.
+3. **Unbound Local Font:** Inspection confirmed that the user has complete Nunito TTF files (weights 300 to 900) installed in `C:\Users\conbo\AppData\Local\Microsoft\Windows\Fonts\`. However, browsers do not automatically map `font-family: 'Nunito'` from extension CSS unless explicit `@font-face { src: local('Nunito'); }` definitions exist.
+
+### Fix / Modifications Applied
+- **Local `@font-face` Definitions:**
+  - Added 6 `@font-face` rules into [`css/youtube-enhancer-theme.css`](file:///c:/Users/conbo/Documents/antigravity/busy-galileo/css/youtube-enhancer-theme.css) binding weights 400, 500, 600, 700, 800, and 900 directly to `local('Nunito')`, `local('Nunito-Bold')`, etc., bypassing all network and CSP blocks.
+- **High-Specificity Selectors:**
+  - Applied overrides directly to `html[dark]`, `html[light]`, `[dark]`, `ytd-app`, `yt-formatted-string`, `span.yt-core-attributed-string`, `#video-title`, `#channel-name`, `#description`, and `#content-text`.
+- **Dynamic DOM Injection in Userscript:**
+  - Updated [`js/youtube-auto-proceed.user.js`](file:///c:/Users/conbo/Documents/antigravity/busy-galileo/js/youtube-auto-proceed.user.js) with `injectNunitoFont()` to dynamically append `<link>` and `<style>` blocks into the DOM head, ensuring full penetration across lifecycle navigations.
+
+### Verification & Outcome
+- Confirmed local font TTF files on filesystem; verified CSS rules and userscript injection; committed and synchronized with Git repository.
+
+

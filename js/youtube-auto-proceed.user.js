@@ -12,6 +12,39 @@
 (function () {
   'use strict';
 
+  // 1. Enforce Nunito typography across document DOM
+  function injectNunitoFont() {
+    if (document.getElementById('yt-nunito-font-style')) return;
+
+    if (!document.getElementById('yt-nunito-font-link')) {
+      const link = document.createElement('link');
+      link.id = 'yt-nunito-font-link';
+      link.rel = 'stylesheet';
+      link.href = 'https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300..900;1,300..900&display=swap';
+      (document.head || document.documentElement).appendChild(link);
+    }
+
+    const style = document.createElement('style');
+    style.id = 'yt-nunito-font-style';
+    style.textContent = `
+      html, html[dark], html[light], :root, [dark], body, ytd-app {
+        --yt-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+        --yt-sans-font: 'Nunito', 'Segoe UI', sans-serif !important;
+        --ytd-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+        --yt-title-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+      }
+      html[dark] *, html *, body *, ytd-app *, yt-formatted-string, yt-formatted-string *, span.yt-core-attributed-string, #video-title, #channel-name, #description, #content-text, button, input {
+        font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+      }
+    `;
+    (document.head || document.documentElement).appendChild(style);
+  }
+
+  injectNunitoFont();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', injectNunitoFont);
+  }
+
   const TARGET_KEYWORDS = [
     'understand and wish to proceed',
     'understand',
