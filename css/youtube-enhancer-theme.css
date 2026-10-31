@@ -1,18 +1,12 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300..900;1,300..900&display=swap');
 
 /* --------------------------------------------------------------------------
-   ðŸ”¤ GLOBAL NUNITO LOCAL & REMOTE TYPOGRAPHY ENGINE
+   ðŸ”¤ ZERO-OVERHEAD NUNITO TYPOGRAPHY (NATIVE FONT INHERITANCE)
    -------------------------------------------------------------------------- */
 @font-face {
   font-family: 'Nunito';
   src: local('Nunito'), local('Nunito-Regular');
   font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Nunito';
-  src: local('Nunito Medium'), local('Nunito-Medium');
-  font-weight: 500;
   font-style: normal;
 }
 @font-face {
@@ -27,24 +21,11 @@
   font-weight: 700;
   font-style: normal;
 }
-@font-face {
-  font-family: 'Nunito';
-  src: local('Nunito ExtraBold'), local('Nunito-ExtraBold');
-  font-weight: 800;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Nunito';
-  src: local('Nunito Black'), local('Nunito-Black');
-  font-weight: 900;
-  font-style: normal;
-}
 
 html,
 html[dark],
 html[light],
 :root,
-[dark],
 body,
 ytd-app {
   --yt-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
@@ -54,14 +35,9 @@ ytd-app {
   font-family: 'Nunito', 'Segoe UI', sans-serif !important;
 }
 
-html[dark] *,
-html *,
-body *,
-ytd-app *,
+/* Let child text nodes inherit directly from root without recalculation thrashing */
 yt-formatted-string,
-yt-formatted-string *,
 span.yt-core-attributed-string,
-span.yt-core-attributed-string *,
 #video-title,
 #channel-name,
 #description,
