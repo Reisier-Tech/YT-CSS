@@ -343,6 +343,32 @@ Persistent log of technical actions, bug diagnoses, code modifications, and reve
 ### Verification & Outcome
 - Every single text token and element across the interface resolves to Nunito; zero performance regression; committed and pushed to Git.
 
+---
+
+## Phase 14: YouTube Modern Wiz Components & Full UI Typography Penetration
+
+### Symptom / Objective
+- **Symptom:** User reported: *"some word still not changed"*.
+- **Objective:** Target YouTube's modern "Wiz" custom components, thumbnail duration badges, search autocomplete boxes, channel tabs, and semantic inline tags that remained in standard fonts.
+
+### Root Cause & Technical Analysis
+- **Wiz Architecture & Autocomplete Dropdowns:** YouTube's latest UI uses specialized Lit components with the `-wiz` suffix:
+  - Video Duration Badges on Thumbnails: `.badge-shape-wiz`, `.badge-shape-wiz__text`, `ytd-thumbnail-overlay-time-status-renderer`
+  - Channel Navigation Tabs: `.yt-tab-shape-wiz`, `.yt-tab-shape-wiz__tab`, `tp-yt-paper-tab`
+  - Metadata Rows: `.yt-content-metadata-view-model-wiz__metadata-row`, `.yt-video-attribute-view-model__metadata`
+  - Search Autocomplete Dropdowns: `.sbsb_a`, `.sbsb_c`, `.sbdd_b`, `.gsfs`
+  - Inline Formatting Tags: `b`, `strong`, `em`, `small`, `label`, `li`, `time`
+  These elements encapsulate text inside isolated sub-containers that ignored earlier selector sets.
+
+### Fix / Modifications Applied
+- **Comprehensive Selector Expansion:**
+  - Injected all `-wiz` components, thumbnail duration badges, channel tab shapes, search dropdowns (`.sbsb_c`, `.gsfs`), player menu labels, and semantic text tags into [`css/youtube-enhancer-theme.css`](file:///c:/Users/conbo/Documents/antigravity/busy-galileo/css/youtube-enhancer-theme.css).
+  - Mirrored all added selectors into `injectNunitoFont()` in [`js/youtube-auto-proceed.user.js`](file:///c:/Users/conbo/Documents/antigravity/busy-galileo/js/youtube-auto-proceed.user.js).
+
+### Verification & Outcome
+- Verified coverage across thumbnail badges, channel tabs, search suggestions, and inline tags; committed and pushed to Git.
+
+
 
 
 
