@@ -368,6 +368,37 @@ Persistent log of technical actions, bug diagnoses, code modifications, and reve
 ### Verification & Outcome
 - Verified coverage across thumbnail badges, channel tabs, search suggestions, and inline tags; committed and pushed to Git.
 
+---
+
+## Phase 15: Comment "Sort By" & Popup Dropdown Menu Typography Resolution
+
+### Symptom / Objective
+- **Symptom:** User uploaded a screenshot showing the Comment Sort-By menu (*"Sắp xếp theo"*, *"Nổi bật nhất"*, *"Hiện bình luận nổi bật"*, *"Mới nhất"*, *"Hiện bình luận gần đây..."*) still rendering in standard Roboto.
+- **Objective:** Target the exact DOM elements and Polymer paper-components powering YouTube's popup dropdown menus and apply Nunito across all menu titles and subtitles.
+
+### Root Cause & Technical Analysis
+- **Detached `ytd-popup-container` & Polymer Shadow Scoping:**
+  1. When clicking *"Sắp xếp theo"* (Sort by), YouTube dynamically spawns a floating overlay within `ytd-popup-container` (outside the standard video watch flexy tree).
+  2. The items are rendered inside `ytd-menu-popup-renderer` -> `ytd-menu-service-item-renderer` -> `tp-yt-paper-item`.
+  3. Polymer's `tp-yt-paper-item` reads `--paper-font-subhead_-_font-family` and `--paper-font-body1_-_font-family` inside its shadow DOM.
+  4. The explanatory descriptions (*"Hiện bình luận nổi bật"*, etc.) use class `.subtitle.ytd-menu-service-item-renderer`, which had specific font overrides that bypassed general text tags.
+
+### Fix / Modifications Applied
+- **Polymer Paper-Font Tokens:**
+  - Added `--paper-font-subhead_-_font-family`, `--paper-font-body1_-_font-family`, `--paper-font-body2_-_font-family`, `--paper-font-caption_-_font-family`, and `--paper-font-menu_-_font-family` set to `'Nunito', 'Segoe UI', sans-serif !important`.
+- **Targeted Popup Selectors:**
+  - Added dedicated rules in [`css/youtube-enhancer-theme.css`](file:///c:/Users/conbo/Documents/antigravity/busy-galileo/css/youtube-enhancer-theme.css) and [`js/youtube-auto-proceed.user.js`](file:///c:/Users/conbo/Documents/antigravity/busy-galileo/js/youtube-auto-proceed.user.js) targeting:
+    - `ytd-popup-container *`
+    - `ytd-menu-popup-renderer *`
+    - `ytd-menu-service-item-renderer *`
+    - `tp-yt-paper-item *`, `tp-yt-paper-item-body *`
+    - `ytd-sort-filter-sub-menu-renderer *`, `#sort-menu *`
+    - `.subtitle.ytd-menu-service-item-renderer`, `.subtitle`, `.item`
+
+### Verification & Outcome
+- Perfectly matched the elements shown in the user's screenshot; verified full Nunito inheritance; committed and pushed to Git.
+
+
 
 
 

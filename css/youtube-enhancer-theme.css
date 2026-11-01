@@ -60,7 +60,16 @@ ytd-app {
   --yt-spec-typography-button-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
   --yt-spec-typography-label-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
   --yt-spec-typography-callout-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
-  --paper-font-common-base_-_font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+    --paper-font-common-base_-_font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --paper-font-common-code_-_font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --paper-font-body1_-_font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --paper-font-body2_-_font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --paper-font-button_-_font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --paper-font-caption_-_font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --paper-font-headline_-_font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --paper-font-menu_-_font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --paper-font-subhead_-_font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  --paper-font-title_-_font-family: 'Nunito', 'Segoe UI', sans-serif !important;
 
   font-family: 'Nunito', 'Segoe UI', sans-serif !important;
 }
@@ -137,6 +146,39 @@ yt-dynamic-text-view-model,
 button,
 input,
 textarea {
+  font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+}
+
+
+/* --------------------------------------------------------------------------
+   ðŸ”¤ DROPDOWN MENUS, SORT-BY FILTER & POPUP CONTAINER TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+ytd-popup-container,
+ytd-popup-container *,
+ytd-menu-popup-renderer,
+ytd-menu-popup-renderer *,
+ytd-menu-service-item-renderer,
+ytd-menu-service-item-renderer *,
+tp-yt-iron-dropdown,
+tp-yt-iron-dropdown *,
+tp-yt-paper-listbox,
+tp-yt-paper-listbox *,
+tp-yt-paper-item,
+tp-yt-paper-item *,
+tp-yt-paper-item-body,
+tp-yt-paper-item-body *,
+ytd-sort-filter-sub-menu-renderer,
+ytd-sort-filter-sub-menu-renderer *,
+yt-sort-filter-sub-menu-renderer,
+yt-sort-filter-sub-menu-renderer *,
+#sort-menu,
+#sort-menu *,
+.ytd-menu-service-item-renderer,
+.subtitle.ytd-menu-service-item-renderer,
+.subtitle,
+.item,
+#menu,
+#menu * {
   font-family: 'Nunito', 'Segoe UI', sans-serif !important;
 }
 

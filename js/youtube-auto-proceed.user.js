@@ -42,7 +42,7 @@
         --yt-spec-typography-label-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
         --ytd-user-comment-font-family: 'Nunito', 'Segoe UI', sans-serif !important;
       }
-      h1, h2, h3, h4, h5, h6, p, a, span, b, strong, em, small, label, li, time, yt-formatted-string, yt-formatted-string span, yt-core-attributed-string, yt-core-attributed-string span, yt-attributed-string, yt-attributed-string span, .yt-core-attributed-string, .yt-spec-button-shape-next__button-text-content, #video-title, #channel-name, #description, #content-text, #owner-sub-count, #metadata-line span, .badge-shape-wiz, .badge-shape-wiz__text, .yt-tab-shape-wiz, .yt-tab-shape-wiz__tab, .sbsb_c, .gsfs, .ytp-time-display, .ytp-time-current, .ytp-time-duration, button, input, textarea {
+      h1, h2, h3, h4, h5, h6, p, a, span, b, strong, em, small, label, li, time, yt-formatted-string, yt-formatted-string span, yt-core-attributed-string, yt-core-attributed-string span, yt-attributed-string, yt-attributed-string span, .yt-core-attributed-string, .yt-spec-button-shape-next__button-text-content, #video-title, #channel-name, #description, #content-text, #owner-sub-count, #metadata-line span, .badge-shape-wiz, .badge-shape-wiz__text, .yt-tab-shape-wiz, .yt-tab-shape-wiz__tab, .sbsb_c, .gsfs, .ytp-time-display, .ytp-time-current, .ytp-time-duration, ytd-popup-container *, ytd-menu-service-item-renderer, ytd-menu-service-item-renderer *, tp-yt-paper-item, tp-yt-paper-item *, .subtitle, button, input, textarea {
         font-family: 'Nunito', 'Segoe UI', sans-serif !important;
       }
     `;
