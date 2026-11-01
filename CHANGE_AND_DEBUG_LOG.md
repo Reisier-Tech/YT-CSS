@@ -398,6 +398,32 @@ Persistent log of technical actions, bug diagnoses, code modifications, and reve
 ### Verification & Outcome
 - Perfectly matched the elements shown in the user's screenshot; verified full Nunito inheritance; committed and pushed to Git.
 
+---
+
+## Phase 16: Description Inline Expander & Paper-Button Typography Coverage
+
+### Symptom / Objective
+- **Symptom:** User noticed: *"'expand' in description too"* (*"...more"*, *"...thêm"*, *"Show more"*, *"Show less"*, *"Thu gọn"*) was still rendering in standard Roboto.
+- **Objective:** Target the description inline expander components and Polymer paper-buttons to apply Nunito across all description toggle controls.
+
+### Root Cause & Technical Analysis
+- **`tp-yt-paper-button` Shadow Containment:** The description expand button is rendered as `<tp-yt-paper-button id="expand">` and `<tp-yt-paper-button id="collapse">` inside `ytd-text-inline-expander` (or `.truncated-text-wiz__more-button` in the newer Wiz layout). Because Polymer `<tp-yt-paper-button>` defines its own internal button styling, it ignored generic text tag selectors unless specifically targeted by element ID (`#expand`, `#collapse`) and component name (`tp-yt-paper-button`).
+
+### Fix / Modifications Applied
+- **Targeted Description Expander Selectors:**
+  - Added dedicated rules in [`css/youtube-enhancer-theme.css`](file:///c:/Users/conbo/Documents/antigravity/busy-galileo/css/youtube-enhancer-theme.css) and [`js/youtube-auto-proceed.user.js`](file:///c:/Users/conbo/Documents/antigravity/busy-galileo/js/youtube-auto-proceed.user.js) targeting:
+    - `#expand`, `#collapse`, `#expand *`, `#collapse *`
+    - `#expand-sizer *`
+    - `ytd-text-inline-expander *`, `#description-inline-expander *`
+    - `tp-yt-paper-button`, `tp-yt-paper-button *`
+    - `tp-yt-paper-button#more *`, `tp-yt-paper-button#less *`
+    - `.truncated-text-wiz__more-button *`, `.truncated-text-wiz__less-button *`
+    - `ytd-expandable-video-description-body-renderer *`
+
+### Verification & Outcome
+- Description "...more" / "...thêm" toggle and collapse buttons immediately render in Nunito; committed and pushed to Git.
+
+
 
 
 
