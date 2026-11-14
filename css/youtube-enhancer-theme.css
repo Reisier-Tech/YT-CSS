@@ -517,6 +517,33 @@ ytd-ticket-shelf-renderer {
   pointer-events: none !important;
 }
 
+
+/* Completely hide/eradicate "Experiencing interruptions?" / "Bạn đang gặp sự cố gây gián đoạn?" Anti-Adblock Toasts */
+yt-notification-action-renderer,
+.yt-notification-action-renderer,
+tp-yt-paper-toast,
+#toast.tp-yt-paper-toast,
+snackbar-view-model,
+.snackbar-view-model,
+ytd-popup-container yt-notification-action-renderer,
+ytd-popup-container tp-yt-paper-toast,
+.paper-toast-open,
+ytd-mealbar-promo-renderer,
+yt-mealbar-promo-renderer,
+[aria-label*="gián đoạn" i],
+[aria-label*="interruptions" i] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
 /* Fix interstitial warning screen (e.g. sensitive/suicide content warning overlays) */
 yt-playability-error-supported-renderers,
 ytd-player-error-message-renderer,

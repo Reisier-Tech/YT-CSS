@@ -423,6 +423,33 @@ Persistent log of technical actions, bug diagnoses, code modifications, and reve
 ### Verification & Outcome
 - Description "...more" / "...thêm" toggle and collapse buttons immediately render in Nunito; committed and pushed to Git.
 
+---
+
+## Phase 17: "Bạn đang gặp sự cố gây gián đoạn?" (Experiencing Interruptions) Eradication
+
+### Symptom / Objective
+- **Symptom:** User uploaded a screenshot showing a persistent, recurring bottom toast popup: *"Bạn đang gặp sự cố gây gián đoạn?"* (English translation: *"Experiencing interruptions? Find out why"*).
+- **Objective:** Eradicate this popup permanently from the screen and prevent YouTube's artificial buffering stalls from interrupting video playback.
+
+### Root Cause & Technical Analysis
+- **Anti-Adblock Enforcement Toast:** YouTube generates this toast notification (`yt-notification-action-renderer`, `tp-yt-paper-toast`, `snackbar-view-model`) when client-side detection scripts observe ad-blockers (e.g. uBlock Origin, AdGuard, or Brave Shields) blocking ad network payloads. YouTube couples this message with an artificial buffering delay to frustrate ad-block users into disabling their extensions or purchasing YouTube Premium.
+
+### Fix / Modifications Applied
+- **CSS Eradication:**
+  - Added rules to [`css/youtube-enhancer-theme.css`](file:///c:/Users/conbo/Documents/antigravity/busy-galileo/css/youtube-enhancer-theme.css) setting `display: none !important; opacity: 0 !important; pointer-events: none !important; height: 0 !important;` on:
+    - `yt-notification-action-renderer`, `.yt-notification-action-renderer`
+    - `tp-yt-paper-toast`, `#toast.tp-yt-paper-toast`
+    - `snackbar-view-model`, `.snackbar-view-model`
+    - `ytd-popup-container yt-notification-action-renderer`
+    - `ytd-mealbar-promo-renderer`, `yt-mealbar-promo-renderer`
+    - `[aria-label*="gián đoạn" i]`, `[aria-label*="interruptions" i]`
+- **Userscript Auto-Dismiss & Recovery:**
+  - Added real-time toast interception in [`js/youtube-auto-proceed.user.js`](file:///c:/Users/conbo/Documents/antigravity/busy-galileo/js/youtube-auto-proceed.user.js). Whenever elements containing `"gián đoạn"` or `"interrupt"` spawn, the script immediately removes them from the DOM and calls `video.play()` to bypass artificial pauses.
+
+### Verification & Outcome
+- Interruption toast completely suppressed in CSS and JS; playback auto-resumes; committed and pushed to Git.
+
+
 
 
 

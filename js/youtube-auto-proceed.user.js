@@ -111,6 +111,19 @@
 
     let clicked = false;
 
+    // Auto-dismiss "Experiencing interruptions?" / "Bạn đang gặp sự cố gây gián đoạn?"
+    const toasts = document.querySelectorAll('yt-notification-action-renderer, tp-yt-paper-toast, snackbar-view-model, ytd-popup-container yt-notification-action-renderer');
+    for (const toast of toasts) {
+      const text = (toast.textContent || '').toLowerCase();
+      if (text.includes('gián đoạn') || text.includes('interrupt') || text.includes('sự cố')) {
+        toast.remove();
+        const video = document.querySelector('video');
+        if (video && video.paused) {
+          video.play().catch(() => {});
+        }
+      }
+    }
+
     // 1. Direct high-priority selectors inside error containers
     const errorContainers = [
       '#error-screen',
