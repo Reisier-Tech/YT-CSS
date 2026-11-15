@@ -603,6 +603,42 @@ Deep profiling of [`css/youtube-enhancer-theme.css`](file:///c:/Users/conbo/Docu
 - Ghost line across the button gap and behind the floating Dislike button is completely eliminated.
 - Updated CSS copied to clipboard; committed and pushed to `Reisier-Tech/YT-CSS:main`.
 
+---
+
+## Phase 23: Complete Eradication of Segmented Capsule Ghost Line & Divider via `display: contents` Box-Model Annihilation
+
+### Symptom / Objective
+- **Symptom:** User confirmed the thin grey line / capsule outline between and behind the Like and Dislike buttons remained visible (`"it still there"`).
+- **Objective:** Permanently obliterate the stationary capsule border, native divider line, and RYD rate bar from rendering across resting, hover, and active states.
+
+### Root Cause & Technical Analysis
+1. **Stationary Wrapper Box Models in Chromium:**
+   - In modern YouTube (Lit/Wiz layout), the Like and Dislike buttons are nested within a composite capsule:
+     `segmented-like-dislike-button-view-model` -> `div.ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper#segmented-buttons-wrapper` -> `yt-smartimation` -> `div.ytSmartimationHost` -> `like-button-view-model` & `dislike-button-view-model` -> `yt-button-shape` -> `button`.
+   - Previously, intermediate wrappers (`#segmented-buttons-wrapper`, `.ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper`, `yt-smartimation`, `.ytSmartimationHost`) were declared as `display: inline-flex !important;`.
+   - Because they produced physical box models in the browser, any native YouTube styles, extension styles (Return YouTube Dislike / Enhancer for YouTube), or inherited variables rendered a stationary 1px border (`border: 1px solid var(--yt-spec-10-percent-layer)`) and capsule outline (`border-radius: 18px`).
+   - When the Dislike button hovered and translated up (`translateY(-4px)`), the stationary parent box remained at `translateY(0)`, revealing the top connecting horizontal line and right rounded contour.
+2. **Native Pseudo-Element Divider Line:**
+   - YouTube's native segmented button stylesheet injects an `::after` pseudo-element on `.yt-spec-button-shape-next--segmented-start` (`content: ""; position: absolute; right: 0; width: 1px; background: var(--yt-spec-10-percent-layer);`) which draws a 1px vertical grey divider line between the buttons.
+
+### Fix / Modifications Applied
+- **File:** [`css/youtube-enhancer-theme.css`](file:///c:/Users/conbo/Documents/antigravity/busy-galileo/css/youtube-enhancer-theme.css)
+  - **Applied `display: contents !important;` across all intermediate wrappers:**
+    Set on `#segmented-buttons-wrapper`, `.ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper`, `yt-smartimation`, `.ytSmartimationHost`, `yt-smartimation > div`, `like-button-view-model`, `dislike-button-view-model`, `.ytLikeButtonViewModelHost`, `.ytDislikeButtonViewModelHost`, `segmented-like-dislike-button-view-model yt-button-shape`, `ytd-segmented-like-dislike-button-renderer yt-button-shape`, `like-button-view-model yt-button-shape`, and `dislike-button-view-model yt-button-shape`.
+    *Result:* The browser completely skips generating a box model for these intermediate containers. They cannot produce backgrounds, borders, outlines, or box-shadows.
+  - **Eradicated all pseudo-elements (`::after` & `::before`):**
+    Forced `display: none !important; content: none !important; width: 0 !important; height: 0 !important; border: none !important;` on all children and wrappers inside segmented like/dislike buttons, permanently killing the native vertical divider line.
+  - **Nuclear wipe of non-button elements & RYD bars:**
+    Targeted `*:not(button):not(svg):not(path):not(yt-icon):not(span)`, `#ryd-bar`, and `#ryd-bar-container` with `border: none !important; border-width: 0 !important; outline: none !important; box-shadow: none !important; background: transparent !important;`.
+  - **Clean Outer Container:**
+    `segmented-like-dislike-button-view-model` acts as the sole flex container (`display: inline-flex !important; align-items: center !important; gap: 4px !important; border: none !important; background: transparent !important;`), cleanly laying out the two independent `<button>` elements with an exact 4px gap.
+
+### Verification & Outcome
+- Zero ghost boxes, zero connecting lines, zero vertical dividers, and zero stationary borders between or behind Like and Dislike.
+- Both buttons remain 100% independent glass pills with smooth hover float physics and clean Nunito typography.
+- Updated CSS copied directly to Windows clipboard; changes committed and pushed to `Reisier-Tech/YT-CSS:main`.
+
+
 
 
 

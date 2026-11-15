@@ -709,51 +709,35 @@ dislike-button-view-model {
   --yt-spec-10-percent-layer: transparent !important;
   --yt-spec-touch-response: transparent !important;
   --yt-spec-touch-response-inverse: transparent !important;
+  --yt-spec-line: transparent !important;
+  --ytd-segmented-like-dislike-button-renderer-border-color: transparent !important;
+  --yt-spec-border: transparent !important;
+  --yt-spec-general-background-a: transparent !important;
 }
 
-/* 2. Completely Delete/Vanish Any Underlying Bar or Wrapper Across ALL States */
+/* 2. Outer Host: Clean Inline-Flex Container (Zero Border, Zero Ghost Capsule) */
+html body ytd-app ytd-watch-metadata #actions ytd-menu-renderer ytd-segmented-like-dislike-button-renderer,
+html body ytd-app ytd-watch-metadata #actions ytd-menu-renderer segmented-like-dislike-button-view-model,
+html body ytd-app ytd-watch-metadata #actions ytd-segmented-like-dislike-button-renderer,
+html body ytd-app ytd-watch-metadata #actions segmented-like-dislike-button-view-model,
+html body ytd-app ytd-watch-metadata ytd-segmented-like-dislike-button-renderer,
+html body ytd-app ytd-watch-metadata segmented-like-dislike-button-view-model,
 ytd-segmented-like-dislike-button-renderer,
 segmented-like-dislike-button-view-model,
 yt-segmented-like-dislike-button-view-model,
-.ytSegmentedLikeDislikeButtonViewModelHost,
-.ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper,
-#segmented-buttons-wrapper,
-yt-smartimation,
-yt-smartimation > div,
-[id="segmented-buttons-wrapper"],
-[class*="segmented" i]:not(button),
-[class*="Segmented" i]:not(button),
-ytd-segmented-like-dislike-button-renderer div:not(button),
-segmented-like-dislike-button-view-model div:not(button),
-like-button-view-model,
-dislike-button-view-model,
-.ytLikeButtonViewModelHost,
-.ytDislikeButtonViewModelHost,
-toggle-button-view-model,
-button-view-model,
-#segmented-like-button,
-#segmented-dislike-button,
-yt-button-shape,
-yt-button-shape.yt-spec-button-shape-next--segmented-start,
-yt-button-shape.yt-spec-button-shape-next--segmented-end,
-ytd-segmented-like-dislike-button-renderer ytd-toggle-button-renderer,
-ytd-segmented-like-dislike-button-renderer yt-button-shape,
-segmented-like-dislike-button-view-model yt-button-shape,
-like-button-view-model yt-button-shape,
-dislike-button-view-model yt-button-shape,
-ytd-comment-action-buttons-renderer #like-button,
-ytd-comment-action-buttons-renderer #dislike-button,
-ytd-comment-action-buttons-renderer ytd-toggle-button-renderer,
-#top-level-buttons-computed > ytd-segmented-like-dislike-button-renderer,
-#top-level-buttons-computed > segmented-like-dislike-button-view-model,
-ytd-watch-metadata ytd-segmented-like-dislike-button-renderer,
-ytd-watch-metadata segmented-like-dislike-button-view-model {
+.ytSegmentedLikeDislikeButtonViewModelHost {
+  display: inline-flex !important;
+  align-items: center !important;
+  vertical-align: middle !important;
+  gap: 4px !important;
   background: transparent !important;
   background-color: transparent !important;
   border: none !important;
+  border-width: 0 !important;
   border-color: transparent !important;
   box-shadow: none !important;
   outline: none !important;
+  outline-width: 0 !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
   filter: none !important;
@@ -762,84 +746,80 @@ ytd-watch-metadata segmented-like-dislike-button-view-model {
   overflow: visible !important;
 }
 
-/* Also ensure hover, active, focus states on all wrappers never show any ghost bar */
-ytd-segmented-like-dislike-button-renderer:hover,
-segmented-like-dislike-button-view-model:hover,
-yt-segmented-like-dislike-button-view-model:hover,
-.ytSegmentedLikeDislikeButtonViewModelHost:hover,
-.ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper:hover,
-#segmented-buttons-wrapper:hover,
-yt-smartimation:hover,
-yt-smartimation > div:hover,
-like-button-view-model:hover,
-dislike-button-view-model:hover,
-.ytLikeButtonViewModelHost:hover,
-.ytDislikeButtonViewModelHost:hover,
-toggle-button-view-model:hover,
-button-view-model:hover,
-#segmented-like-button:hover,
-#segmented-dislike-button:hover,
-ytd-segmented-like-dislike-button-renderer ytd-toggle-button-renderer:hover,
-ytd-segmented-like-dislike-button-renderer yt-button-shape:hover,
-segmented-like-dislike-button-view-model yt-button-shape:hover,
-like-button-view-model yt-button-shape:hover,
-dislike-button-view-model yt-button-shape:hover,
-ytd-comment-action-buttons-renderer #like-button:hover,
-ytd-comment-action-buttons-renderer #dislike-button:hover {
+/* 3. Annihilate ALL Intermediate Box Models via display: contents !important
+   (Zero boxes = Zero lines, Zero ghost borders, Zero capsule remnants) */
+#segmented-buttons-wrapper,
+.ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper,
+yt-smartimation,
+.ytSmartimationHost,
+yt-smartimation > div,
+like-button-view-model,
+dislike-button-view-model,
+.ytLikeButtonViewModelHost,
+.ytDislikeButtonViewModelHost,
+segmented-like-dislike-button-view-model yt-button-shape,
+ytd-segmented-like-dislike-button-renderer yt-button-shape,
+like-button-view-model yt-button-shape,
+dislike-button-view-model yt-button-shape,
+ytd-toggle-button-renderer,
+button-view-model,
+toggle-button-view-model,
+#segmented-like-button,
+#segmented-dislike-button {
+  display: contents !important;
   background: transparent !important;
   background-color: transparent !important;
   border: none !important;
+  border-width: 0 !important;
   border-color: transparent !important;
-  box-shadow: none !important;
   outline: none !important;
+  outline-width: 0 !important;
+  box-shadow: none !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
 
-/* Specificity booster: Overrides any third-party or extension bar styling */
-html body ytd-app ytd-watch-metadata #top-level-buttons-computed ytd-segmented-like-dislike-button-renderer,
-html body ytd-app ytd-watch-metadata #top-level-buttons-computed segmented-like-dislike-button-view-model,
-html body ytd-app ytd-watch-metadata #top-level-buttons-computed #segmented-buttons-wrapper,
-html body ytd-app ytd-watch-metadata #top-level-buttons-computed yt-smartimation,
-html body ytd-app ytd-watch-metadata #top-level-buttons-computed [class*="segmentedButtonsWrapper" i],
-html body ytd-app ytd-watch-metadata #top-level-buttons-computed [class*="SegmentedLikeDislike" i] {
+/* 4. Nuclear Wipe of any non-button elements inside segmented like/dislike */
+segmented-like-dislike-button-view-model *:not(button):not(svg):not(path):not(yt-icon):not(span),
+ytd-segmented-like-dislike-button-renderer *:not(button):not(svg):not(path):not(yt-icon):not(span),
+#segmented-buttons-wrapper *:not(button):not(svg):not(path):not(yt-icon):not(span),
+.ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper *:not(button):not(svg):not(path):not(yt-icon):not(span),
+#ryd-bar-container,
+#ryd-bar,
+[data-ryd-rate-bar-wrapper="true"] {
+  border: none !important;
+  border-width: 0 !important;
+  border-color: transparent !important;
+  outline: none !important;
+  outline-width: 0 !important;
+  box-shadow: none !important;
   background: transparent !important;
   background-color: transparent !important;
-  border: none !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
-  outline: none !important;
 }
 
-/* 3. Wrapper Flex Layout & Gap */
-ytd-segmented-like-dislike-button-renderer,
-segmented-like-dislike-button-view-model,
-yt-segmented-like-dislike-button-view-model,
-.ytSegmentedLikeDislikeButtonViewModelHost,
-.ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper,
-#segmented-buttons-wrapper,
-yt-smartimation {
-  display: inline-flex !important;
-  vertical-align: middle !important;
-  gap: 4px !important;
-}
-
-/* Hide native segmented buttons divider completely */
+/* 5. Hide native segmented buttons divider & RYD rate bars completely */
 .yt-spec-button-shape-next__segmented-buttons-divider,
 #segmented-buttons-wrapper > .yt-spec-button-shape-next__segmented-buttons-divider,
 segmented-like-dislike-button-view-model .yt-spec-button-shape-next__segmented-buttons-divider,
 .ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper .yt-spec-button-shape-next__segmented-buttons-divider,
-ytd-segmented-like-dislike-button-renderer .yt-spec-button-shape-next__segmented-buttons-divider {
+ytd-segmented-like-dislike-button-renderer .yt-spec-button-shape-next__segmented-buttons-divider,
+[class*="segmented-buttons-divider" i],
+[class*="segmentedButtonsDivider" i],
+[class*="divider" i].yt-spec-button-shape-next,
+#ryd-bar,
+#ryd-bar-container,
+[data-ryd-rate-bar-wrapper="true"] {
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
   width: 0 !important;
   height: 0 !important;
   border: none !important;
+  border-width: 0 !important;
   background: transparent !important;
 }
 
-/* Completely eliminate native touch feedback shapes on like & dislike */
+/* 6. Completely Eliminate Native Touch Feedback Shapes on Like & Dislike */
 like-button-view-model yt-touch-feedback-shape,
 dislike-button-view-model yt-touch-feedback-shape,
 .yt-spec-button-shape-next--segmented-start yt-touch-feedback-shape,
@@ -863,45 +843,31 @@ dislike-button-view-model .yt-spec-touch-feedback-shape__stroke {
   background: transparent !important;
 }
 
-/* Prevent unwanted pseudo-elements on all wrappers and buttons */
-ytd-segmented-like-dislike-button-renderer::before,
-ytd-segmented-like-dislike-button-renderer::after,
-segmented-like-dislike-button-view-model::before,
-segmented-like-dislike-button-view-model::after,
-.ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper::before,
-.ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper::after,
-#segmented-buttons-wrapper::before,
-#segmented-buttons-wrapper::after,
-yt-smartimation::before,
-yt-smartimation::after,
-yt-smartimation div::before,
-yt-smartimation div::after,
-like-button-view-model::before,
-like-button-view-model::after,
-dislike-button-view-model::before,
-dislike-button-view-model::after,
-toggle-button-view-model::before,
-toggle-button-view-model::after,
-button-view-model::before,
-button-view-model::after,
-#segmented-like-button::before,
-#segmented-like-button::after,
-#segmented-dislike-button::before,
-#segmented-dislike-button::after,
-like-button-view-model button::after,
-like-button-view-model button::before,
-dislike-button-view-model button::after,
-dislike-button-view-model button::before,
-.yt-spec-button-shape-next--segmented-start::after,
-.yt-spec-button-shape-next--segmented-start::before,
-.yt-spec-button-shape-next--segmented-end::after,
-.yt-spec-button-shape-next--segmented-end::before,
-segmented-like-dislike-button-view-model button::after,
-segmented-like-dislike-button-view-model button::before {
+/* 7. Eradicate ALL Pseudo-Elements (Native Divider Lines & Capsule Borders) */
+segmented-like-dislike-button-view-model *::after,
+segmented-like-dislike-button-view-model *::before,
+ytd-segmented-like-dislike-button-renderer *::after,
+ytd-segmented-like-dislike-button-renderer *::before,
+#segmented-buttons-wrapper *::after,
+#segmented-buttons-wrapper *::before,
+.ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper *::after,
+.ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper *::before,
+like-button-view-model *::after,
+like-button-view-model *::before,
+dislike-button-view-model *::after,
+dislike-button-view-model *::before,
+button.yt-spec-button-shape-next--segmented-start::after,
+button.yt-spec-button-shape-next--segmented-start::before,
+button.yt-spec-button-shape-next--segmented-end::after,
+button.yt-spec-button-shape-next--segmented-end::before {
   display: none !important;
   content: none !important;
-  background: transparent !important;
+  width: 0 !important;
+  height: 0 !important;
   border: none !important;
+  border-width: 0 !important;
+  background: transparent !important;
+  opacity: 0 !important;
   box-shadow: none !important;
   transform: none !important;
 }
