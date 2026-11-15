@@ -1,7 +1,5 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300..900;1,300..900&display=swap');
-
-/* --------------------------------------------------------------------------
-   ðŸ”¤ COMPREHENSIVE NUNITO TYPOGRAPHY & SPEC VARIABLE OVERRIDES
+﻿/* --------------------------------------------------------------------------
+   🔤 COMPREHENSIVE NUNITO TYPOGRAPHY & SPEC VARIABLE OVERRIDES
    -------------------------------------------------------------------------- */
 @font-face {
   font-family: 'Nunito';
@@ -92,28 +90,16 @@ yt-attributed-string span,
 /* Description Expand/Collapse ("...more" / "...thÃªm" / "Show more" / "Show less") */
 #expand,
 #collapse,
-#expand *,
-#collapse *,
 #expand-sizer,
-#expand-sizer *,
 ytd-text-inline-expander,
-ytd-text-inline-expander *,
 #description-inline-expander,
-#description-inline-expander *,
 tp-yt-paper-button,
-tp-yt-paper-button *,
 tp-yt-paper-button#more,
 tp-yt-paper-button#less,
-tp-yt-paper-button#more *,
-tp-yt-paper-button#less *,
 .truncated-text-wiz__more-button,
-.truncated-text-wiz__more-button *,
 .truncated-text-wiz__less-button,
-.truncated-text-wiz__less-button *,
 ytd-expandable-video-description-body-renderer,
-ytd-expandable-video-description-body-renderer *,
 #structured-description,
-#structured-description *,
 #description,
 #description-inner,
 #content-text,
@@ -180,31 +166,24 @@ textarea {
    ðŸ”¤ DROPDOWN MENUS, SORT-BY FILTER & POPUP CONTAINER TYPOGRAPHY
    -------------------------------------------------------------------------- */
 ytd-popup-container,
-ytd-popup-container *,
 ytd-menu-popup-renderer,
-ytd-menu-popup-renderer *,
 ytd-menu-service-item-renderer,
-ytd-menu-service-item-renderer *,
+ytd-menu-service-item-renderer yt-formatted-string,
+ytd-menu-service-item-renderer span,
 tp-yt-iron-dropdown,
-tp-yt-iron-dropdown *,
 tp-yt-paper-listbox,
-tp-yt-paper-listbox *,
 tp-yt-paper-item,
-tp-yt-paper-item *,
+tp-yt-paper-item yt-formatted-string,
+tp-yt-paper-item span,
 tp-yt-paper-item-body,
-tp-yt-paper-item-body *,
 ytd-sort-filter-sub-menu-renderer,
-ytd-sort-filter-sub-menu-renderer *,
 yt-sort-filter-sub-menu-renderer,
-yt-sort-filter-sub-menu-renderer *,
 #sort-menu,
-#sort-menu *,
 .ytd-menu-service-item-renderer,
 .subtitle.ytd-menu-service-item-renderer,
 .subtitle,
 .item,
-#menu,
-#menu * {
+#menu {
   font-family: 'Nunito', 'Segoe UI', sans-serif !important;
 }
 
@@ -580,89 +559,46 @@ ytd-watch-metadata yt-button-shape button:hover,
 /* --------------------------------------------------------------------------
    ðŸŽ¯ 6.1. BUTTER-SMOOTH CONTINUOUS LEVITATION (NO LAG / NO TELEPORT)
    -------------------------------------------------------------------------- */
-/* Layer 1: Continuous Floating Orbit on the Wrapper (Never resets on hover) */
-@keyframes continuousLevitation {
-  0% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  25% {
-    transform: translateY(-4px) rotate(-1deg);
-  }
-  50% {
-    transform: translateY(-8px) rotate(0.8deg);
-  }
-  75% {
-    transform: translateY(-3px) rotate(-0.5deg);
-  }
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-}
-
-/* Cosmic Gradient Drift */
-@keyframes continuousGradientFlow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* Wrapper: Runs the continuous floating flight forever */
+/* 🎯 6.1. HIGH-PERFORMANCE VIBRANT SUBSCRIBE BUTTON (0% CPU / ZERO REPAINTS) */
 #subscribe-button yt-button-shape,
 #subscribe-button yt-button-view-model,
 ytd-subscribe-button-renderer yt-button-shape,
 ytd-subscribe-button-renderer yt-button-view-model {
   display: inline-block !important;
-  animation: continuousLevitation 3.8s ease-in-out infinite !important;
-  will-change: transform !important;
 }
 
-/* Layer 2: Interactive Button with Pure CSS Transition (Glides smoothly) */
 #subscribe-button yt-button-shape button,
 #subscribe-button button,
 ytd-subscribe-button-renderer yt-button-shape button,
 ytd-subscribe-button-renderer yt-button-view-model button {
-  background: linear-gradient(135deg, #ff3366 0%, #ba2df4 35%, #00d2ff 75%, #ff3366 100%) !important;
-  background-size: 300% 300% !important;
-  animation: continuousGradientFlow 6s linear infinite !important;
+  background: linear-gradient(135deg, #ba2df4 0%, #ff3366 100%) !important;
   color: #ffffff !important;
   font-weight: 700 !important;
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
   border-radius: var(--radius-pill) !important;
-  box-shadow: 0 4px 15px var(--accent-glow), 0 0 10px rgba(255, 51, 102, 0.35) !important;
+  box-shadow: 0 4px 15px var(--accent-glow) !important;
   cursor: pointer !important;
   position: relative !important;
-  will-change: transform, box-shadow, filter !important;
-  /* Butter-smooth transition: NO instant teleport or timeline resets */
-  transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1),
-              box-shadow 0.45s cubic-bezier(0.2, 0.9, 0.3, 1),
-              filter 0.45s ease,
-              border-color 0.45s ease !important;
+  transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.2, 0.9, 0.3, 1),
+              filter 0.25s ease !important;
 }
 
-/* Text & icons inside */
-#subscribe-button yt-button-shape button *,
-ytd-subscribe-button-renderer yt-button-shape button * {
+#subscribe-button yt-button-shape button span,
+#subscribe-button button span,
+ytd-subscribe-button-renderer yt-button-shape button span,
+ytd-subscribe-button-renderer yt-button-view-model button span {
   color: #ffffff !important;
   font-weight: 700 !important;
 }
 
-/* Cursor Hover: Smoothly glides HIGHER on top of the floating wrapper */
 #subscribe-button yt-button-shape button:hover,
 #subscribe-button button:hover,
 ytd-subscribe-button-renderer yt-button-shape button:hover,
 ytd-subscribe-button-renderer yt-button-view-model button:hover {
-  transform: translateY(-8px) scale(1.06) !important;
-  filter: brightness(1.25) hue-rotate(50deg) !important;
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.55),
-              0 0 24px rgba(255, 51, 102, 0.85),
-              0 0 40px rgba(0, 210, 255, 0.7) !important;
-  border-color: #ffffff !important;
+  transform: translateY(-2px) scale(1.03) !important;
+  filter: brightness(1.15) !important;
+  box-shadow: 0 8px 24px rgba(186, 45, 244, 0.6) !important;
 }
 
 /* Click Press Effect */
@@ -716,16 +652,11 @@ ytd-subscribe-button-renderer[subscribed] yt-button-shape button:hover {
      Zero radioactive glow/blur. Icons and buttons remain sharp and tactile.
    -------------------------------------------------------------------------- */
 
-/* --- 🌟 Universal Fallback: Guarantees Action Icons Animate (Excluding Video Player) --- */
-yt-icon:not(.html5-video-player *),
-c-icon:not(.html5-video-player *),
-.yt-spec-button-shape-next__icon,
-yt-icon-button:not(.html5-video-player *) yt-icon,
-yt-icon-button:not(.html5-video-player *) c-icon,
-yt-icon-button:not(.html5-video-player *) svg,
-button.yt-icon-button:not(.html5-video-player *) yt-icon,
-button.yt-icon-button:not(.html5-video-player *) c-icon,
-button.yt-icon-button:not(.html5-video-player *) svg,
+/* --- 🌟 Action Icons Animation (Excluding Video Player) --- */
+#actions yt-icon,
+#actions c-icon,
+#actions .yt-spec-button-shape-next__icon,
+#actions svg,
 ytd-button-renderer yt-icon,
 ytd-button-renderer c-icon,
 yt-button-shape yt-icon,
@@ -734,17 +665,16 @@ yt-button-view-model yt-icon,
 yt-button-view-model c-icon {
   transform-box: fill-box !important;
   transform-origin: center center !important;
-  will-change: transform !important;
   transition: transform 0.85s var(--spring-wobble) !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
 }
 
-button:not(.html5-video-player *):active yt-icon,
-button:not(.html5-video-player *):active c-icon,
-button:not(.html5-video-player *):active svg,
-button:active .yt-spec-button-shape-next__icon,
+#actions button:active yt-icon,
+#actions button:active c-icon,
+#actions button:active svg,
+#actions button:active .yt-spec-button-shape-next__icon,
 yt-button-shape:active yt-icon,
 yt-button-shape:active c-icon,
 yt-button-shape:active svg,
@@ -753,12 +683,6 @@ yt-button-view-model:active yt-icon,
 yt-button-view-model:active c-icon,
 yt-button-view-model:active svg,
 yt-button-view-model:active .yt-spec-button-shape-next__icon,
-yt-icon-button:not(.html5-video-player *):active yt-icon,
-yt-icon-button:not(.html5-video-player *):active c-icon,
-yt-icon-button:not(.html5-video-player *):active svg,
-button.yt-icon-button:not(.html5-video-player *):active yt-icon,
-button.yt-icon-button:not(.html5-video-player *):active c-icon,
-button.yt-icon-button:not(.html5-video-player *):active svg,
 ytd-button-renderer:active yt-icon,
 ytd-button-renderer:active c-icon,
 ytd-button-renderer:active svg {
@@ -778,7 +702,6 @@ button[aria-label*="Lưu" i],
 download-button-view-model button,
 #top-level-buttons-computed > *:not(like-button-view-model):not(dislike-button-view-model):not(segmented-like-dislike-button-view-model):not(ytd-segmented-like-dislike-button-renderer) button {
   position: relative !important;
-  will-change: transform !important;
   transition: transform 0.85s var(--spring-wobble), border-color 0.3s ease, background 0.3s ease !important;
 }
 
@@ -824,10 +747,10 @@ yt-segmented-like-dislike-button-view-model,
 yt-smartimation,
 yt-smartimation > div,
 [id="segmented-buttons-wrapper"],
-[class*="segmented" i]:not(button):not(button *),
-[class*="Segmented" i]:not(button):not(button *),
-ytd-segmented-like-dislike-button-renderer div:not(button):not(button *),
-segmented-like-dislike-button-view-model div:not(button):not(button *),
+[class*="segmented" i]:not(button):not(button),
+[class*="Segmented" i]:not(button):not(button),
+ytd-segmented-like-dislike-button-renderer div:not(button):not(button),
+segmented-like-dislike-button-view-model div:not(button):not(button),
 like-button-view-model,
 dislike-button-view-model,
 .ytLikeButtonViewModelHost,
@@ -974,8 +897,8 @@ segmented-like-dislike-button-view-model::after,
 #segmented-buttons-wrapper::after,
 yt-smartimation::before,
 yt-smartimation::after,
-yt-smartimation *::before,
-yt-smartimation *::after,
+yt-smartimation div::before,
+yt-smartimation div::after,
 like-button-view-model::before,
 like-button-view-model::after,
 dislike-button-view-model::before,
@@ -1024,7 +947,6 @@ ytd-comment-action-buttons-renderer #dislike-button button {
   border: 1px solid var(--border-subtle) !important;
   border-radius: var(--radius-pill) !important;
   box-sizing: border-box !important;
-  will-change: transform, background, border-color, box-shadow, filter !important;
   transform: none !important;
   transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1),
               background 0.3s ease,
@@ -1148,7 +1070,7 @@ ytd-watch-metadata #actions ytd-menu-renderer > yt-button-shape {
 /* B. Wrappers around the other buttons: 100% invisible (no bar / ghost box) */
 ytd-watch-metadata #actions #top-level-buttons-computed > *:not(ytd-segmented-like-dislike-button-renderer):not(segmented-like-dislike-button-view-model),
 ytd-watch-metadata #actions yt-button-view-model,
-ytd-watch-metadata #actions button-view-model:not(like-button-view-model *):not(dislike-button-view-model *),
+ytd-watch-metadata #actions button-view-model,
 ytd-watch-metadata #actions share-button-view-model,
 ytd-watch-metadata #actions yt-share-button-view-model,
 ytd-watch-metadata #actions download-button-view-model,
@@ -1156,7 +1078,7 @@ ytd-watch-metadata #actions ytd-button-renderer,
 ytd-watch-metadata #actions ytd-download-button-renderer,
 ytd-watch-metadata #actions ytd-menu-renderer > yt-button-shape,
 ytd-watch-metadata #actions #button-shape,
-ytd-watch-metadata #actions yt-button-shape:not(like-button-view-model *):not(dislike-button-view-model *) {
+ytd-watch-metadata #actions yt-button-shape {
   background: transparent !important;
   background-color: transparent !important;
   border: none !important;
@@ -1168,19 +1090,24 @@ ytd-watch-metadata #actions yt-button-shape:not(like-button-view-model *):not(di
 }
 
 /* No native ripple / ghost layers on the other buttons */
-ytd-watch-metadata #actions yt-touch-feedback-shape:not(like-button-view-model *):not(dislike-button-view-model *),
-ytd-watch-metadata #actions .yt-spec-touch-feedback-shape:not(like-button-view-model *):not(dislike-button-view-model *) {
+ytd-watch-metadata #actions yt-touch-feedback-shape,
+ytd-watch-metadata #actions .yt-spec-touch-feedback-shape {
   display: none !important;
 }
 
 /* C. The buttons themselves: independent glass pills */
-ytd-watch-metadata #actions button:not(like-button-view-model *):not(dislike-button-view-model *):not(ytd-segmented-like-dislike-button-renderer *):not(segmented-like-dislike-button-view-model *) {
+ytd-watch-metadata #actions share-button-view-model button,
+ytd-watch-metadata #actions yt-share-button-view-model button,
+ytd-watch-metadata #actions download-button-view-model button,
+ytd-watch-metadata #actions ytd-download-button-renderer button,
+ytd-watch-metadata #actions ytd-button-renderer button,
+ytd-watch-metadata #actions ytd-menu-renderer yt-button-shape button,
+ytd-watch-metadata #actions #top-level-buttons-computed > ytd-button-renderer button {
   position: relative !important;
   background: var(--bg-card-glass) !important;
   border: 1px solid var(--border-subtle) !important;
   border-radius: var(--radius-pill) !important;
   box-sizing: border-box !important;
-  will-change: transform, background, border-color, box-shadow, filter !important;
   transform: none !important;
   transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1),
               background 0.3s ease,
@@ -1190,7 +1117,13 @@ ytd-watch-metadata #actions button:not(like-button-view-model *):not(dislike-but
 }
 
 /* D. Hover: ONLY the hovered button floats up (clean glass, zero glow) */
-ytd-watch-metadata #actions button:not(like-button-view-model *):not(dislike-button-view-model *):not(ytd-segmented-like-dislike-button-renderer *):not(segmented-like-dislike-button-view-model *):hover {
+ytd-watch-metadata #actions share-button-view-model button:hover,
+ytd-watch-metadata #actions yt-share-button-view-model button:hover,
+ytd-watch-metadata #actions download-button-view-model button:hover,
+ytd-watch-metadata #actions ytd-download-button-renderer button:hover,
+ytd-watch-metadata #actions ytd-button-renderer button:hover,
+ytd-watch-metadata #actions ytd-menu-renderer yt-button-shape button:hover,
+ytd-watch-metadata #actions #top-level-buttons-computed > ytd-button-renderer button:hover {
   transform: translateY(-4px) !important;
   border: 1px solid rgba(255, 255, 255, 0.25) !important;
   background: var(--bg-card-glass-hover) !important;
@@ -1200,7 +1133,13 @@ ytd-watch-metadata #actions button:not(like-button-view-model *):not(dislike-but
 }
 
 /* E. Click: tactile press on the individual button */
-ytd-watch-metadata #actions button:not(like-button-view-model *):not(dislike-button-view-model *):not(ytd-segmented-like-dislike-button-renderer *):not(segmented-like-dislike-button-view-model *):active {
+ytd-watch-metadata #actions share-button-view-model button:active,
+ytd-watch-metadata #actions yt-share-button-view-model button:active,
+ytd-watch-metadata #actions download-button-view-model button:active,
+ytd-watch-metadata #actions ytd-download-button-renderer button:active,
+ytd-watch-metadata #actions ytd-button-renderer button:active,
+ytd-watch-metadata #actions ytd-menu-renderer yt-button-shape button:active,
+ytd-watch-metadata #actions #top-level-buttons-computed > ytd-button-renderer button:active {
   transform: translateY(-1px) scale(0.97) !important;
   background: var(--bg-card-glass-hover) !important;
   border-color: rgba(255, 255, 255, 0.2) !important;
@@ -1514,8 +1453,8 @@ ytd-comment-action-buttons-renderer #like-button svg {
 }
 
 /* Ensure internal SVG thumb elements never fade or hide */
-like-button-view-model yt-animated-icon *,
-.yt-spec-button-shape-next--segmented-start yt-animated-icon * {
+like-button-view-model yt-animated-icon svg,
+.yt-spec-button-shape-next--segmented-start yt-animated-icon svg {
   opacity: 1 !important;
 }
 
@@ -1633,7 +1572,6 @@ button[title*="Share" i] c-icon,
 button[title*="Share" i] svg {
   transform-box: fill-box !important;
   transform-origin: center center !important;
-  will-change: transform !important;
   transition: transform 0.85s var(--spring-wobble) !important;
   display: inline-flex !important;
 }
@@ -1705,7 +1643,6 @@ ytd-watch-metadata #actions [aria-label*="Ask" i] svg,
 ytd-watch-metadata #actions [aria-label*="Ask" i] .yt-spec-button-shape-next__icon {
   transform-box: fill-box !important;
   transform-origin: center center !important;
-  will-change: transform !important;
   transition: transform 0.95s var(--spring-wobble) !important;
   display: inline-flex !important;
 }
@@ -1768,7 +1705,6 @@ download-button-view-model svg,
 #top-level-buttons-computed > *:nth-child(n+3) svg {
   transform-box: fill-box !important;
   transform-origin: center center !important;
-  will-change: transform !important;
   transition: transform 0.85s var(--spring-wobble) !important;
   display: inline-flex !important;
 }
@@ -1814,7 +1750,6 @@ ytd-subscription-notification-toggle-button-renderer-next yt-icon,
 ytd-notification-topbar-button-renderer yt-icon,
 #notification-button yt-icon {
   transform-origin: top center !important;
-  will-change: transform !important;
   transition: transform 1.0s var(--spring-pendulum) !important;
 }
 
@@ -1837,7 +1772,6 @@ ytd-notification-topbar-button-renderer button:active yt-icon,
 .ytp-play-button svg path {
   transform-box: fill-box !important;
   transform-origin: center center !important;
-  will-change: transform !important;
   transition: transform 0.8s var(--spring-wobble) !important;
 }
 
@@ -1852,7 +1786,6 @@ ytd-notification-topbar-button-renderer button:active yt-icon,
 .ytp-mute-button svg path {
   transform-box: fill-box !important;
   transform-origin: center center !important;
-  will-change: transform !important;
   transition: transform 0.85s var(--spring-wobble) !important;
 }
 
@@ -1867,7 +1800,6 @@ ytd-notification-topbar-button-renderer button:active yt-icon,
 .ytp-settings-button svg path {
   transform-box: fill-box !important;
   transform-origin: center center !important;
-  will-change: transform !important;
   transition: transform 0.9s var(--spring-wobble) !important;
 }
 
@@ -1886,7 +1818,6 @@ ytd-notification-topbar-button-renderer button:active yt-icon,
 .ytp-subtitles-button svg path {
   transform-box: fill-box !important;
   transform-origin: center center !important;
-  will-change: transform !important;
   transition: transform 0.8s var(--spring-wobble) !important;
 }
 
@@ -1903,7 +1834,6 @@ ytd-notification-topbar-button-renderer button:active yt-icon,
 .ytp-fullscreen-button svg path {
   transform-box: fill-box !important;
   transform-origin: center center !important;
-  will-change: transform !important;
   transition: transform 0.8s var(--spring-wobble) !important;
 }
 
@@ -1919,7 +1849,6 @@ ytd-notification-topbar-button-renderer button:active yt-icon,
 .ytp-next-button svg path {
   transform-box: fill-box !important;
   transform-origin: center center !important;
-  will-change: transform !important;
   transition: transform 0.8s var(--spring-wobble) !important;
 }
 
@@ -1933,7 +1862,6 @@ ytd-notification-topbar-button-renderer button:active yt-icon,
 .ytp-prev-button svg path {
   transform-box: fill-box !important;
   transform-origin: center center !important;
-  will-change: transform !important;
   transition: transform 0.8s var(--spring-wobble) !important;
 }
 
@@ -1946,7 +1874,6 @@ ytd-notification-topbar-button-renderer button:active yt-icon,
 /* --- 13. AUTOPLAY & MINIPLAYER BUTTONS: 0.8s Elastic Snap (Zero Glow, No Sparks) --- */
 .ytp-miniplayer-button svg,
 .ytp-autonav-toggle-button {
-  will-change: transform !important;
   transition: transform 0.8s var(--spring-wobble) !important;
 }
 
@@ -1970,7 +1897,6 @@ ytd-notification-topbar-button-renderer button:active yt-icon,
 /* --- 14. MASTHEAD SEARCH BUTTON: 0.85s Lens Zoom Punch (Zero Glow) --- */
 #search-icon-legacy yt-icon,
 #search-icon-legacy svg {
-  will-change: transform !important;
   transition: transform 0.85s var(--spring-wobble) !important;
 }
 
@@ -1985,7 +1911,6 @@ ytd-notification-topbar-button-renderer button:active yt-icon,
 #voice-search-button yt-icon,
 #voice-search-button svg,
 #voice-search-button yt-icon-button {
-  will-change: transform !important;
   transition: transform 0.85s var(--spring-wobble) !important;
 }
 
@@ -2000,7 +1925,6 @@ ytd-notification-topbar-button-renderer button:active yt-icon,
 /* --- 16. MASTHEAD HAMBURGER GUIDE: 0.85s Accordion Squash & Spring (Zero Glow) --- */
 #guide-button yt-icon,
 #guide-button svg {
-  will-change: transform !important;
   transition: transform 0.85s var(--spring-wobble) !important;
 }
 
@@ -2023,7 +1947,6 @@ ytd-topbar-menu-button-renderer:active yt-icon {
 
 /* --- 18. TACTILE CUSHION PRESS: Chips, Sidebar Items & Dropdown Menus --- */
 yt-chip-cloud-chip-renderer {
-  will-change: transform !important;
   transition: transform 0.4s var(--spring-wobble) !important;
 }
 
@@ -2035,7 +1958,6 @@ yt-chip-cloud-chip-renderer:active {
 }
 
 ytd-guide-entry-renderer {
-  will-change: transform !important;
   transition: transform 0.4s var(--spring-wobble) !important;
 }
 
@@ -2047,7 +1969,6 @@ ytd-guide-entry-renderer:active {
 
 ytd-menu-service-item-renderer,
 tp-yt-paper-item {
-  will-change: transform !important;
   transition: transform 0.4s var(--spring-wobble) !important;
 }
 
