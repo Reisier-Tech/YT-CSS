@@ -680,6 +680,55 @@ Deep profiling of [`css/youtube-enhancer-theme.css`](file:///c:/Users/conbo/Docu
 - No stationary ghost capsule, top border line, or outline remains behind the floating dislike button.
 - Updated CSS copied to Windows clipboard; committed and pushed to `Reisier-Tech/YT-CSS:main`.
 
+---
+
+### Entry 25: Restore Original (OG) YouTube Comment Action Buttons Layout & Scoping Isolation - (Retries: 0) - (Status: Resolved)
+- **Symptom / Objective:**
+  - The user confirmed that the interruption popup and thin wrapper outline are completely eradicated (`"oh and that popup text and warpper now is gone"`).
+  - However, in YouTube comments ([`media_1794734277257_26f82db1.png`](file:///C:/Users/conbo/.gemini/antigravity/brain/87c67d7d-4fad-4867-adff-de7c8e5cf0a6/.user_uploaded/media_1794734277257_26f82db1.png)), the comment action buttons were broken into an unnatural wide layout: thumbs up icon on the far left, vote count (`442`) and thumbs down floating in the middle, and creator heart + "Phản hồi" (Reply) pushed to the far right.
+  - User request: `"ignore the comment text, what is that layout, make it back to og"`.
+
+- **Root Cause & Technical Analysis:**
+  - Modern YouTube (`<ytd-comment-view-model>`) reuses the same Web Component custom element tags (`<like-button-view-model>`, `<dislike-button-view-model>`, `<button-view-model>`, `<toggle-button-view-model>`) inside its comment toolbar (`<comment-action-buttons-view-model>`).
+  - In earlier iterations, rules eliminating the segmented pill container on video watch metadata used unscoped selectors (`like-button-view-model`, `dislike-button-view-model`, `button-view-model`) set to `display: contents !important;`.
+  - In comments, `like-button-view-model` wraps both the like icon button and the vote count `span` (`#vote-count-middle`). By forcing `display: contents`, the container box was erased, causing the like button, vote count, dislike button, and reply button to become direct, unbundled flex items of the comment row. Because the comment row flex container distributes extra space, the items scattered across the entire width.
+  - Additionally, generic pill borders and hover translate states had leaked into comment buttons.
+
+- **Fix / Modifications Applied:**
+  - **File:** [`css/youtube-enhancer-theme.css`](file:///c:/Users/conbo/Documents/antigravity/busy-galileo/css/youtube-enhancer-theme.css)
+    1. **Strict Scoping of Segmented Like/Dislike Rules:**
+       - Scoped all `display: contents !important;` rules strictly under `segmented-like-dislike-button-view-model` (e.g. `segmented-like-dislike-button-view-model like-button-view-model`, `segmented-like-dislike-button-view-model button-view-model`), completely freeing comment elements from `display: contents`.
+       - Scoped pill backgrounds, borders, hover animations (`translateY(-4px)`), and active tactile compression to `segmented-like-dislike-button-view-model` and `ytd-watch-metadata #actions`.
+       - Stripped all `ytd-comment-action-buttons-renderer` selectors from the video player glass pill blocks.
+    2. **Dedicated OG Comment Layout Restoration:**
+       - Defined an explicit reset block for comments:
+         ```css
+         #action-buttons,
+         #action-buttons.ytd-comment-view-model,
+         #action-buttons.ytd-comment-renderer,
+         comment-action-buttons-view-model,
+         ytd-comment-action-buttons-renderer {
+           display: flex !important;
+           flex-direction: row !important;
+           align-items: center !important;
+           justify-content: flex-start !important;
+           gap: 8px !important;
+           margin-top: 4px !important;
+           background: transparent !important;
+           border: none !important;
+           box-shadow: none !important;
+         }
+         ```
+       - Restored `display: inline-flex !important;` to all button wrappers (`like-button-view-model`, `dislike-button-view-model`, `button-view-model`, `creator-heart-view-model`) inside `<comment-action-buttons-view-model>`.
+       - Cleaned comment buttons to native flat, borderless inline icons (`background: transparent !important; border: none !important; transform: none !important;`) with subtle semi-transparent hover feedback.
+       - Kept vote count `#vote-count-middle` inline right next to the thumbs-up button with compact `margin: 0 4px;` in Nunito typography.
+
+- **Verification & Outcome:**
+  - Video player top-level Like/Dislike pills remain independent, floating, borderless, and 100% synchronized.
+  - Comment toolbar action buttons restored to original YouTube compact left-aligned grouping (`[👍 442] [👎] [❤️] [Phản hồi]`).
+  - No wide horizontal spacing or disjointed item separation.
+  - CSS copied to Windows clipboard; committed and pushed to `Reisier-Tech/YT-CSS:main`.
+
 
 
 

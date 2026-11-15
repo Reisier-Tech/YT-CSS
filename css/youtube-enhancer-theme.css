@@ -690,23 +690,18 @@ ytd-button-renderer:active svg {
 }
 
 /* --- 🔘 Action Buttons: Clean Non-Laggy Cushion (No Glow on other buttons) --- */
-share-button-view-model button,
-yt-share-button-view-model button,
-segmented-like-dislike-button-view-model + * button,
-ytd-segmented-like-dislike-button-renderer + * button,
-button[aria-label*="Ask" i],
-button[aria-label*="Save" i],
-button[aria-label*="Lưu" i],
-download-button-view-model button,
-#top-level-buttons-computed > *:not(like-button-view-model):not(dislike-button-view-model):not(segmented-like-dislike-button-view-model):not(ytd-segmented-like-dislike-button-renderer) button {
+ytd-watch-metadata #actions share-button-view-model button,
+ytd-watch-metadata #actions yt-share-button-view-model button,
+ytd-watch-metadata #actions segmented-like-dislike-button-view-model + * button,
+ytd-watch-metadata #actions ytd-segmented-like-dislike-button-renderer + * button,
+ytd-watch-metadata #actions button[aria-label*="Ask" i],
+ytd-watch-metadata #actions button[aria-label*="Save" i],
+ytd-watch-metadata #actions button[aria-label*="Lưu" i],
+ytd-watch-metadata #actions download-button-view-model button,
+ytd-watch-metadata #actions #top-level-buttons-computed > *:not(like-button-view-model):not(dislike-button-view-model):not(segmented-like-dislike-button-view-model):not(ytd-segmented-like-dislike-button-renderer) button {
   position: relative !important;
   transition: transform 0.85s var(--spring-wobble), border-color 0.3s ease, background 0.3s ease !important;
 }
-
-/* ==========================================================================
-   ✨ LIKE & DISLIKE BUTTONS: SUB-STYLE BUTTER-SMOOTH PHYSICS & PERFECT SYNC
-   (Unified Pill Glide & Tactile Cushion with Original Glass & Glow Colors)
-   ========================================================================== */
 
 /* ==========================================================================
    ✨ LIKE & DISLIKE BUTTONS: SUB-STYLE INDEPENDENT PILL PHYSICS (PERFECT SYNC)
@@ -728,9 +723,12 @@ yt-segmented-like-dislike-button-view-model,
 .ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper,
 yt-smartimation,
 .ytSmartimationHost,
-like-button-view-model,
-dislike-button-view-model,
-toggle-button-view-model {
+segmented-like-dislike-button-view-model like-button-view-model,
+segmented-like-dislike-button-view-model dislike-button-view-model,
+segmented-like-dislike-button-view-model toggle-button-view-model,
+#actions like-button-view-model,
+#actions dislike-button-view-model,
+#actions toggle-button-view-model {
   --yt-spec-badge-chip-background: transparent !important;
   --yt-spec-button-chip-background: transparent !important;
   --yt-spec-button-chip-background-hover: transparent !important;
@@ -814,18 +812,20 @@ segmented-like-dislike-button-view-model:focus-within,
 #segmented-buttons-wrapper:focus-within,
 .ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper:focus-within,
 yt-smartimation:focus-within,
-like-button-view-model:hover,
-dislike-button-view-model:hover,
-.ytLikeButtonViewModelHost:hover,
-.ytDislikeButtonViewModelHost:hover,
-toggle-button-view-model:hover,
-button-view-model:hover,
+segmented-like-dislike-button-view-model like-button-view-model:hover,
+segmented-like-dislike-button-view-model dislike-button-view-model:hover,
+segmented-like-dislike-button-view-model .ytLikeButtonViewModelHost:hover,
+segmented-like-dislike-button-view-model .ytDislikeButtonViewModelHost:hover,
+segmented-like-dislike-button-view-model toggle-button-view-model:hover,
+segmented-like-dislike-button-view-model button-view-model:hover,
+#actions like-button-view-model:hover,
+#actions dislike-button-view-model:hover,
 #segmented-like-button:hover,
 #segmented-dislike-button:hover,
 ytd-segmented-like-dislike-button-renderer yt-button-shape:hover,
 segmented-like-dislike-button-view-model yt-button-shape:hover,
-like-button-view-model yt-button-shape:hover,
-dislike-button-view-model yt-button-shape:hover {
+segmented-like-dislike-button-view-model like-button-view-model yt-button-shape:hover,
+segmented-like-dislike-button-view-model dislike-button-view-model yt-button-shape:hover {
   background: transparent !important;
   background-color: transparent !important;
   border: none !important;
@@ -856,20 +856,20 @@ yt-segmented-like-dislike-button-view-model,
    (Zero boxes = Zero lines, Zero ghost borders, Zero capsule remnants) */
 #segmented-buttons-wrapper,
 .ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper,
-yt-smartimation,
-.ytSmartimationHost,
-yt-smartimation > div,
-like-button-view-model,
-dislike-button-view-model,
-.ytLikeButtonViewModelHost,
-.ytDislikeButtonViewModelHost,
+segmented-like-dislike-button-view-model yt-smartimation,
+segmented-like-dislike-button-view-model .ytSmartimationHost,
+segmented-like-dislike-button-view-model yt-smartimation > div,
+segmented-like-dislike-button-view-model like-button-view-model,
+segmented-like-dislike-button-view-model dislike-button-view-model,
+segmented-like-dislike-button-view-model .ytLikeButtonViewModelHost,
+segmented-like-dislike-button-view-model .ytDislikeButtonViewModelHost,
 segmented-like-dislike-button-view-model yt-button-shape,
 ytd-segmented-like-dislike-button-renderer yt-button-shape,
-like-button-view-model yt-button-shape,
-dislike-button-view-model yt-button-shape,
-ytd-toggle-button-renderer,
-button-view-model,
-toggle-button-view-model,
+segmented-like-dislike-button-view-model like-button-view-model yt-button-shape,
+segmented-like-dislike-button-view-model dislike-button-view-model yt-button-shape,
+#actions ytd-toggle-button-renderer,
+segmented-like-dislike-button-view-model button-view-model,
+segmented-like-dislike-button-view-model toggle-button-view-model,
 #segmented-like-button,
 #segmented-dislike-button {
   display: contents !important;
@@ -928,8 +928,8 @@ ytd-segmented-like-dislike-button-renderer .yt-spec-button-shape-next__segmented
 }
 
 /* 6. Completely Eliminate Native Touch Feedback Shapes on Like & Dislike */
-like-button-view-model yt-touch-feedback-shape,
-dislike-button-view-model yt-touch-feedback-shape,
+segmented-like-dislike-button-view-model like-button-view-model yt-touch-feedback-shape,
+segmented-like-dislike-button-view-model dislike-button-view-model yt-touch-feedback-shape,
 .yt-spec-button-shape-next--segmented-start yt-touch-feedback-shape,
 .yt-spec-button-shape-next--segmented-end yt-touch-feedback-shape,
 #segmented-like-button yt-touch-feedback-shape,
@@ -937,14 +937,14 @@ dislike-button-view-model yt-touch-feedback-shape,
 segmented-like-dislike-button-view-model yt-touch-feedback-shape,
 ytd-segmented-like-dislike-button-renderer yt-touch-feedback-shape,
 .ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper yt-touch-feedback-shape,
-like-button-view-model .yt-spec-touch-feedback-shape,
-dislike-button-view-model .yt-spec-touch-feedback-shape,
+segmented-like-dislike-button-view-model like-button-view-model .yt-spec-touch-feedback-shape,
+segmented-like-dislike-button-view-model dislike-button-view-model .yt-spec-touch-feedback-shape,
 .yt-spec-button-shape-next--segmented-start .yt-spec-touch-feedback-shape,
 .yt-spec-button-shape-next--segmented-end .yt-spec-touch-feedback-shape,
-like-button-view-model .yt-spec-touch-feedback-shape__fill,
-dislike-button-view-model .yt-spec-touch-feedback-shape__fill,
-like-button-view-model .yt-spec-touch-feedback-shape__stroke,
-dislike-button-view-model .yt-spec-touch-feedback-shape__stroke {
+segmented-like-dislike-button-view-model like-button-view-model .yt-spec-touch-feedback-shape__fill,
+segmented-like-dislike-button-view-model dislike-button-view-model .yt-spec-touch-feedback-shape__fill,
+segmented-like-dislike-button-view-model like-button-view-model .yt-spec-touch-feedback-shape__stroke,
+segmented-like-dislike-button-view-model dislike-button-view-model .yt-spec-touch-feedback-shape__stroke {
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
@@ -974,14 +974,14 @@ yt-smartimation::after,
 .smartimation__border-gradient::after,
 [class*="smartimation" i]::before,
 [class*="smartimation" i]::after,
-like-button-view-model::before,
-like-button-view-model::after,
-dislike-button-view-model::before,
-dislike-button-view-model::after,
-toggle-button-view-model::before,
-toggle-button-view-model::after,
-button-view-model::before,
-button-view-model::after,
+segmented-like-dislike-button-view-model like-button-view-model::before,
+segmented-like-dislike-button-view-model like-button-view-model::after,
+segmented-like-dislike-button-view-model dislike-button-view-model::before,
+segmented-like-dislike-button-view-model dislike-button-view-model::after,
+segmented-like-dislike-button-view-model toggle-button-view-model::before,
+segmented-like-dislike-button-view-model toggle-button-view-model::after,
+segmented-like-dislike-button-view-model button-view-model::before,
+segmented-like-dislike-button-view-model button-view-model::after,
 #segmented-like-button::before,
 #segmented-like-button::after,
 #segmented-dislike-button::before,
@@ -994,16 +994,16 @@ ytd-segmented-like-dislike-button-renderer *::before,
 #segmented-buttons-wrapper *::before,
 .ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper *::after,
 .ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper *::before,
-like-button-view-model *::after,
-like-button-view-model *::before,
-dislike-button-view-model *::after,
-dislike-button-view-model *::before,
+segmented-like-dislike-button-view-model like-button-view-model *::after,
+segmented-like-dislike-button-view-model like-button-view-model *::before,
+segmented-like-dislike-button-view-model dislike-button-view-model *::after,
+segmented-like-dislike-button-view-model dislike-button-view-model *::before,
 button.yt-spec-button-shape-next--segmented-start::after,
 button.yt-spec-button-shape-next--segmented-start::before,
 button.yt-spec-button-shape-next--segmented-end::after,
 button.yt-spec-button-shape-next--segmented-end::before,
-yt-button-shape::before,
-yt-button-shape::after {
+segmented-like-dislike-button-view-model yt-button-shape::before,
+segmented-like-dislike-button-view-model yt-button-shape::after {
   display: none !important;
   content: none !important;
   width: 0 !important;
@@ -1018,18 +1018,16 @@ yt-button-shape::after {
 }
 
 /* 8. Like & Dislike Buttons: Beautiful Independent Rounded Pills in ALL States */
-like-button-view-model button,
-dislike-button-view-model button,
-button.yt-spec-button-shape-next--segmented-start,
-button.yt-spec-button-shape-next--segmented-end,
-#segmented-like-button button,
-#segmented-dislike-button button,
 segmented-like-dislike-button-view-model like-button-view-model button,
 segmented-like-dislike-button-view-model dislike-button-view-model button,
 yt-segmented-like-dislike-button-view-model like-button-view-model button,
 yt-segmented-like-dislike-button-view-model dislike-button-view-model button,
-ytd-comment-action-buttons-renderer #like-button button,
-ytd-comment-action-buttons-renderer #dislike-button button {
+#actions like-button-view-model button,
+#actions dislike-button-view-model button,
+#actions button.yt-spec-button-shape-next--segmented-start,
+#actions button.yt-spec-button-shape-next--segmented-end,
+#segmented-like-button button,
+#segmented-dislike-button button {
   position: relative !important;
   background: var(--bg-card-glass) !important;
   border: 1px solid var(--border-subtle) !important;
@@ -1044,19 +1042,21 @@ ytd-comment-action-buttons-renderer #dislike-button button {
 }
 
 /* Explicit separation between Like and Dislike: rely strictly on 4px gap without margin doubling */
-like-button-view-model,
-.ytLikeButtonViewModelHost,
+segmented-like-dislike-button-view-model like-button-view-model,
+segmented-like-dislike-button-view-model .ytLikeButtonViewModelHost,
+#actions like-button-view-model,
 #segmented-like-button,
-.yt-spec-button-shape-next--segmented-start {
+#actions .yt-spec-button-shape-next--segmented-start {
   margin-right: 0 !important;
   margin-left: 0 !important;
   transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1) !important;
 }
 
-dislike-button-view-model,
-.ytDislikeButtonViewModelHost,
+segmented-like-dislike-button-view-model dislike-button-view-model,
+segmented-like-dislike-button-view-model .ytDislikeButtonViewModelHost,
+#actions dislike-button-view-model,
 #segmented-dislike-button,
-.yt-spec-button-shape-next--segmented-end {
+#actions .yt-spec-button-shape-next--segmented-end {
   margin-right: 0 !important;
   margin-left: 0 !important;
   transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1) !important;
@@ -1064,23 +1064,22 @@ dislike-button-view-model,
 
 /* 9. INDEPENDENT HOVER: Only the Hovered Button Floats (Both wrapper and button float synchronously, Zero Ghost Box) */
 /* Like Button Hover: ONLY Like floats up with clean glass */
-like-button-view-model:hover,
-like-button-view-model button:hover,
-button.yt-spec-button-shape-next--segmented-start:hover,
-#segmented-like-button button:hover,
+segmented-like-dislike-button-view-model like-button-view-model:hover,
 segmented-like-dislike-button-view-model like-button-view-model button:hover,
 yt-segmented-like-dislike-button-view-model like-button-view-model button:hover,
-ytd-comment-action-buttons-renderer #like-button button:hover {
+#actions like-button-view-model:hover,
+#actions like-button-view-model button:hover,
+#actions button.yt-spec-button-shape-next--segmented-start:hover,
+#segmented-like-button button:hover {
   transform: translateY(-4px) !important;
   z-index: 5 !important;
 }
 
-like-button-view-model button:hover,
-button.yt-spec-button-shape-next--segmented-start:hover,
-#segmented-like-button button:hover,
 segmented-like-dislike-button-view-model like-button-view-model button:hover,
 yt-segmented-like-dislike-button-view-model like-button-view-model button:hover,
-ytd-comment-action-buttons-renderer #like-button button:hover {
+#actions like-button-view-model button:hover,
+#actions button.yt-spec-button-shape-next--segmented-start:hover,
+#segmented-like-button button:hover {
   border-radius: var(--radius-pill) !important;
   border: 1px solid rgba(255, 255, 255, 0.25) !important;
   background: var(--bg-card-glass-hover) !important;
@@ -1089,27 +1088,26 @@ ytd-comment-action-buttons-renderer #like-button button:hover {
 }
 
 /* Dislike Button Hover: ONLY Dislike floats up with clean glass */
-dislike-button-view-model:hover,
-dislike-button-view-model button:hover,
-button.yt-spec-button-shape-next--segmented-end:hover,
-#segmented-dislike-button button:hover,
+segmented-like-dislike-button-view-model dislike-button-view-model:hover,
 segmented-like-dislike-button-view-model dislike-button-view-model button:hover,
 yt-segmented-like-dislike-button-view-model dislike-button-view-model button:hover,
-button[aria-label*="Dislike" i]:hover,
-button[aria-label*="Không thích" i]:hover,
-ytd-comment-action-buttons-renderer #dislike-button button:hover {
+#actions dislike-button-view-model:hover,
+#actions dislike-button-view-model button:hover,
+#actions button.yt-spec-button-shape-next--segmented-end:hover,
+#segmented-dislike-button button:hover,
+#actions button[aria-label*="Dislike" i]:hover,
+#actions button[aria-label*="Không thích" i]:hover {
   transform: translateY(-4px) !important;
   z-index: 5 !important;
 }
 
-dislike-button-view-model button:hover,
-button.yt-spec-button-shape-next--segmented-end:hover,
-#segmented-dislike-button button:hover,
 segmented-like-dislike-button-view-model dislike-button-view-model button:hover,
 yt-segmented-like-dislike-button-view-model dislike-button-view-model button:hover,
-button[aria-label*="Dislike" i]:hover,
-button[aria-label*="Không thích" i]:hover,
-ytd-comment-action-buttons-renderer #dislike-button button:hover {
+#actions dislike-button-view-model button:hover,
+#actions button.yt-spec-button-shape-next--segmented-end:hover,
+#segmented-dislike-button button:hover,
+#actions button[aria-label*="Dislike" i]:hover,
+#actions button[aria-label*="Không thích" i]:hover {
   border-radius: var(--radius-pill) !important;
   border: 1px solid rgba(255, 255, 255, 0.25) !important;
   background: var(--bg-card-glass-hover) !important;
@@ -1119,12 +1117,11 @@ ytd-comment-action-buttons-renderer #dislike-button button:hover {
 
 /* 4. Sub-Style Click Press (Tactile Keypress Cushion on Individual Button) */
 /* Like Button Active: Tactile Compression on Like alone (Clean glass, Zero Purple Glow) */
-like-button-view-model button:active,
-button.yt-spec-button-shape-next--segmented-start:active,
-#segmented-like-button button:active,
 segmented-like-dislike-button-view-model like-button-view-model button:active,
 yt-segmented-like-dislike-button-view-model like-button-view-model button:active,
-ytd-comment-action-buttons-renderer #like-button button:active {
+#actions like-button-view-model button:active,
+#actions button.yt-spec-button-shape-next--segmented-start:active,
+#segmented-like-button button:active {
   transform: translateY(-1px) scale(0.97) !important;
   background: var(--bg-card-glass-hover) !important;
   border-color: rgba(255, 255, 255, 0.2) !important;
@@ -1135,14 +1132,13 @@ ytd-comment-action-buttons-renderer #like-button button:active {
 }
 
 /* Dislike Button Active: Tactile Compression on Dislike alone */
-dislike-button-view-model button:active,
-button.yt-spec-button-shape-next--segmented-end:active,
-#segmented-dislike-button button:active,
 segmented-like-dislike-button-view-model dislike-button-view-model button:active,
 yt-segmented-like-dislike-button-view-model dislike-button-view-model button:active,
-button[aria-label*="Dislike" i]:active,
-button[aria-label*="Không thích" i]:active,
-ytd-comment-action-buttons-renderer #dislike-button button:active {
+#actions dislike-button-view-model button:active,
+#actions button.yt-spec-button-shape-next--segmented-end:active,
+#segmented-dislike-button button:active,
+#actions button[aria-label*="Dislike" i]:active,
+#actions button[aria-label*="Không thích" i]:active {
   transform: translateY(-1px) scale(0.97) !important;
   background: var(--bg-card-glass-hover) !important;
   border-color: rgba(255, 255, 255, 0.2) !important;
@@ -1386,6 +1382,113 @@ ytd-comment-simplebox-renderer {
   border: 1px solid var(--border-subtle) !important;
   border-radius: var(--radius-md) !important;
   padding: 12px 16px !important;
+}
+
+/* ==========================================================================
+   💬 COMMENTS: 100% RESTORE ORIGINAL (OG) YOUTUBE ACTION BUTTONS LAYOUT
+   ========================================================================== */
+#action-buttons,
+#action-buttons.ytd-comment-view-model,
+#action-buttons.ytd-comment-renderer,
+comment-action-buttons-view-model,
+ytd-comment-action-buttons-renderer {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 8px !important;
+  margin-top: 4px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  overflow: visible !important;
+}
+
+/* Restore the natural display of the button wrappers */
+comment-action-buttons-view-model like-button-view-model,
+comment-action-buttons-view-model dislike-button-view-model,
+comment-action-buttons-view-model button-view-model,
+comment-action-buttons-view-model toggle-button-view-model,
+comment-action-buttons-view-model creator-heart-view-model,
+comment-action-buttons-view-model yt-button-shape,
+ytd-comment-action-buttons-renderer #like-button,
+ytd-comment-action-buttons-renderer #dislike-button,
+ytd-comment-action-buttons-renderer #reply-button,
+ytd-comment-action-buttons-renderer ytd-creator-heart-renderer {
+  display: inline-flex !important;
+  align-items: center !important;
+  vertical-align: middle !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-width: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* Comment Buttons: Clean OG YouTube inline icons (no glass box, no border) */
+comment-action-buttons-view-model button,
+ytd-comment-action-buttons-renderer button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-width: 0 !important;
+  border-radius: var(--radius-pill) !important;
+  box-shadow: none !important;
+  transform: none !important;
+  filter: none !important;
+  color: inherit !important;
+  transition: background 0.2s ease, transform 0.1s ease !important;
+}
+
+/* Subtle hover on comment icon buttons */
+comment-action-buttons-view-model button:hover,
+ytd-comment-action-buttons-renderer button:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  transform: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+comment-action-buttons-view-model button:active,
+ytd-comment-action-buttons-renderer button:active {
+  background: rgba(255, 255, 255, 0.2) !important;
+  transform: scale(0.92) !important;
+  border: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+/* Comment Vote Count Text: placed directly next to thumbs up */
+comment-action-buttons-view-model #vote-count-middle,
+ytd-comment-action-buttons-renderer #vote-count-middle,
+comment-action-buttons-view-model .yt-spec-button-shape-next__button-text-content {
+  display: inline-block !important;
+  font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: normal !important;
+  margin: 0 4px !important;
+  color: #aaa !important;
+}
+
+/* Reply ("Phản hồi") Button */
+comment-action-buttons-view-model button-view-model button,
+ytd-comment-action-buttons-renderer #reply-button button {
+  padding: 0 12px !important;
+  height: 32px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+  border-radius: var(--radius-pill) !important;
 }
 
 /* Smooth accordion for comment replies */
