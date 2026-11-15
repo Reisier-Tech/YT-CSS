@@ -574,6 +574,36 @@ Deep profiling of [`css/youtube-enhancer-theme.css`](file:///c:/Users/conbo/Docu
 - *"Bạn đang gặp sự cố gây gián đoạn?"* trigger eradicated.
 - Streamlined CSS copied to clipboard; committed and pushed to `Reisier-Tech/YT-CSS:main`.
 
+---
+
+## Phase 22: Eradication of Ghost Wrapper Outline Between Like & Dislike Buttons
+
+### Symptom / Objective
+- **Symptom:** User uploaded a screenshot showing a thin grey horizontal line spanning between the Like and Dislike buttons and curving around the top-right when the Dislike button is hovered (`"do u see a thin grey line between 2 buttons, erase it"`).
+- **Objective:** Completely erase the ghost outline and ensure the gap between the buttons is 100% clean and transparent.
+
+### Root Cause & Technical Analysis
+1. **Unqualified `.yt-spec-button-shape-next--segmented-start/end` Selectors:**
+   - In `css/youtube-enhancer-theme.css`, the pill border was assigned to `.yt-spec-button-shape-next--segmented-start` and `.yt-spec-button-shape-next--segmented-end` without qualifying the `button` tag.
+   - In YouTube's Lit/Wiz DOM, these classes are placed on the parent `<yt-button-shape>` container as well as the inner `<button>`.
+   - Consequently, BOTH the `<yt-button-shape>` wrapper AND the inner `<button>` received a `1px solid var(--border-subtle)` border.
+2. **Hover Translation Offset Mismatch:**
+   - On hover, `dislike-button-view-model button:hover` translated the `<button>` up by 4px (`translateY(-4px)`).
+   - However, the parent `<yt-button-shape>` remained static at `translateY(0)`.
+   - Because the parent wrapper was left drawn at the baseline, its top border was exposed as a thin grey line spanning across the gap and behind the hovered button.
+
+### Fix / Modifications Applied
+- **File:** [`css/youtube-enhancer-theme.css`](file:///c:/Users/conbo/Documents/antigravity/busy-galileo/css/youtube-enhancer-theme.css)
+  - Qualified all segmented button selectors to target only `button.yt-spec-button-shape-next--segmented-start` and `button.yt-spec-button-shape-next--segmented-end`.
+  - Added explicit container zeroing for `yt-button-shape`, `yt-button-shape.yt-spec-button-shape-next--segmented-start`, and `yt-button-shape.yt-spec-button-shape-next--segmented-end` (`border: none !important; outline: none !important; box-shadow: none !important; background: transparent !important;`).
+  - Updated `:hover` and `:active` rules to only float and style the `button` element.
+
+### Verification & Outcome
+- Only the actual buttons have borders; all wrappers are 100% borderless and transparent.
+- Ghost line across the button gap and behind the floating Dislike button is completely eliminated.
+- Updated CSS copied to clipboard; committed and pushed to `Reisier-Tech/YT-CSS:main`.
+
+
 
 
 
