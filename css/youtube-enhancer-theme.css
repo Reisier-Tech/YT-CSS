@@ -1033,12 +1033,27 @@ yt-segmented-like-dislike-button-view-model dislike-button-view-model button,
   border: 1px solid var(--border-subtle) !important;
   border-radius: var(--radius-pill) !important;
   box-sizing: border-box !important;
+  width: auto !important;
+  min-width: max-content !important;
+  overflow: visible !important;
+  padding-left: 12px !important;
+  padding-right: 14px !important;
   transform: none !important;
   transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1),
               background 0.3s ease,
               border-color 0.35s ease,
               box-shadow 0.4s cubic-bezier(0.2, 0.9, 0.3, 1),
               filter 0.35s ease !important;
+}
+
+/* C.1. Prevent Text Truncation / Ellipsis on All Action Buttons */
+ytd-watch-metadata #actions .yt-spec-button-shape-next__button-text-content,
+ytd-watch-metadata #actions .yt-core-attributed-string {
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: nowrap !important;
+  max-width: none !important;
+  width: auto !important;
 }
 
 /* Explicit separation between Like and Dislike: rely strictly on 4px gap without margin doubling */
@@ -1214,12 +1229,27 @@ ytd-watch-metadata #actions #top-level-buttons-computed > ytd-button-renderer bu
   border: 1px solid var(--border-subtle) !important;
   border-radius: var(--radius-pill) !important;
   box-sizing: border-box !important;
+  width: auto !important;
+  min-width: max-content !important;
+  overflow: visible !important;
+  padding-left: 12px !important;
+  padding-right: 14px !important;
   transform: none !important;
   transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1),
               background 0.3s ease,
               border-color 0.35s ease,
               box-shadow 0.4s cubic-bezier(0.2, 0.9, 0.3, 1),
               filter 0.35s ease !important;
+}
+
+/* C.1. Prevent Text Truncation / Ellipsis on All Action Buttons */
+ytd-watch-metadata #actions .yt-spec-button-shape-next__button-text-content,
+ytd-watch-metadata #actions .yt-core-attributed-string {
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: nowrap !important;
+  max-width: none !important;
+  width: auto !important;
 }
 
 /* D. Hover: ONLY the hovered button floats up (clean glass, zero glow) */

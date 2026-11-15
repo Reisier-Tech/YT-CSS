@@ -729,6 +729,41 @@ Deep profiling of [`css/youtube-enhancer-theme.css`](file:///c:/Users/conbo/Docu
   - No wide horizontal spacing or disjointed item separation.
   - CSS copied to Windows clipboard; committed and pushed to `Reisier-Tech/YT-CSS:main`.
 
+---
+
+### Entry 26: Prevent Like/Dislike & Action Button Text Truncation (Ellipsis "...") - (Retries: 0) - (Status: Resolved)
+- **Symptom / Objective:**
+  - The user uploaded a screenshot ([`media_1794735010734_afe64928.png`](file:///C:/Users/conbo/.gemini/antigravity/brain/87c67d7d-4fad-4867-adff-de7c8e5cf0a6/.user_uploaded/media_1794735010734_afe64928.png)) showing the video player's Like button rendering as `1,5 ...` instead of `1,5 Tr` (1.5 Million), asking: `"what is that "..." "`.
+  - Objective: Explain the cause clearly and eliminate text truncation across all action buttons so numbers and labels always display in full.
+
+- **Root Cause & Technical Analysis:**
+  - In Vietnamese YouTube, large numerical counts use abbreviations such as **"Tr"** (Triệu / Million, e.g. "1,5 Tr") and **"N"** (Nghìn / Thousand, e.g. "158 N").
+  - YouTube's Web Component stylesheet applies `text-overflow: ellipsis; overflow: hidden; white-space: nowrap;` to `.yt-spec-button-shape-next__button-text-content`.
+  - YouTube calculates the segmented button's default width assuming its standard narrow font (`Roboto`). When our custom theme applies **Nunito** (which has rounded, wider letterforms), `"1,5 Tr"` (6 characters including the space) slightly exceeds the rigid internal slot width by ~3–5px.
+  - Consequently, YouTube's CSS triggered an ellipsis, cutting off `"Tr"` and turning it into `"..."` (`1,5 ...`).
+
+- **Fix / Modifications Applied:**
+  - **File:** [`css/youtube-enhancer-theme.css`](file:///c:/Users/conbo/Documents/antigravity/busy-galileo/css/youtube-enhancer-theme.css)
+    1. **Dynamic Content Width & Padding:**
+       - Added `width: auto !important; min-width: max-content !important; overflow: visible !important; padding-left: 12px !important; padding-right: 14px !important;` to all `#actions` button selectors.
+    2. **Anti-Truncation Override:**
+       - Overrode YouTube's ellipsis on all action buttons:
+         ```css
+         ytd-watch-metadata #actions .yt-spec-button-shape-next__button-text-content,
+         ytd-watch-metadata #actions .yt-core-attributed-string {
+           overflow: visible !important;
+           text-overflow: clip !important;
+           white-space: nowrap !important;
+           max-width: none !important;
+           width: auto !important;
+         }
+         ```
+
+- **Verification & Outcome:**
+  - The Like count displays completely as `1,5 Tr` (or `1.5M`), `158 N`, etc. with zero clipping or ellipsis.
+  - Buttons expand dynamically to fit any text length comfortably.
+  - Updated CSS copied to Windows clipboard; committed and pushed to `Reisier-Tech/YT-CSS:main`.
+
 
 
 
