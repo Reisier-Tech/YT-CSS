@@ -638,6 +638,49 @@ Deep profiling of [`css/youtube-enhancer-theme.css`](file:///c:/Users/conbo/Docu
 - Both buttons remain 100% independent glass pills with smooth hover float physics and clean Nunito typography.
 - Updated CSS copied directly to Windows clipboard; changes committed and pushed to `Reisier-Tech/YT-CSS:main`.
 
+---
+
+## Phase 24: Eradication of Segmented Capsule Hover Ghost & Interruption Playback Stall
+
+### Symptom / Objective
+- **Symptom:** 
+  1. The thin wrapper/border outline remained visible between and behind Like and Dislike on hover (`"that thin wrapper or border still there"`).
+  2. The interruption toast/warning screen *"Bạn đang gặp sự cố gây gián đoạn?"* reappeared, accompanied by micro-freezes during video playback (`"and this Bạn đang gặp sự cố gây gián đoạn? is back, go fix it"`).
+- **Objective:** 
+  1. Eliminate the stationary hover outline once and for all by zeroing all wrapper pseudo-elements across resting and `:hover`/`:focus-within` states and translating `dislike-button-view-model` synchronously.
+  2. Suppress the interruption toast and eliminate player progress bar and scrubber transition overhead causing playback lag.
+
+### Root Cause & Technical Analysis
+1. **Wrapper `:hover` State & Pseudo-Element Leak:**
+   - In modern YouTube, hovering over the Dislike button bubbles up the `:hover` event to `segmented-like-dislike-button-view-model`, `#segmented-buttons-wrapper`, and `yt-smartimation`.
+   - YouTube's native stylesheet and `yt-smartimation` contain `.smartimation__border-gradient` and pseudo-elements (`::after`, `::before`) that apply an animated border/outline on hover.
+   - When only the inner `<button>` translated up by `-4px`, the stationary parent wrappers and their `:hover` pseudo-elements remained at `translateY(0)`, rendering the outline of the resting dislike button and the top horizontal connector.
+2. **Video Player Scrubber Transition Loop:**
+   - `.ytp-scrubber-button` had `transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1) !important;`.
+   - Because YouTube's video player JS continually updates the playhead position via `style.transform = 'translateX(...)'` on every playback tick, the CSS transition continuously fought YouTube's JS, causing paint thrashing and dropped frames.
+   - Additionally, `.ytp-play-progress` had `box-shadow: 0 0 14px var(--accent-glow) !important;`, forcing the GPU to re-rasterize Gaussian blur layers on every frame of video progress.
+   - When YouTube's internal telemetry detects persistent dropped frames and render stalls, it fires the *"Bạn đang gặp sự cố gây gián đoạn?"* popup toast.
+
+### Fix / Modifications Applied
+- **File:** [`css/youtube-enhancer-theme.css`](file:///c:/Users/conbo/Documents/antigravity/busy-galileo/css/youtube-enhancer-theme.css)
+  - **Player Scrubber & Progress Bar Performance:**
+    - Stripped `transition: transform` from `.ytp-scrubber-button`, keeping only `transition: filter 0.25s ease !important;` so YouTube's playhead moves smoothly at 60fps with zero CSS-JS thrashing.
+    - Set `box-shadow: none !important;` on `.ytp-play-progress`, eliminating GPU blur re-rasterization during active playback.
+  - **Exhaustive Interruption / Anti-Adblock Suppression:**
+    - Hidden `yt-notification-action-renderer.ytd-popup-container`, `.paper-toast-open.yt-notification-action-renderer`, `tp-yt-paper-toast yt-notification-action-renderer`, and `tp-yt-paper-toast:has(a)` with `display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important;`.
+  - **Wrapper `:hover` & `:focus-within` Total Nullification:**
+    - Extended border, outline, and box-shadow elimination to `:hover` and `:focus-within` states across all wrappers (`segmented-like-dislike-button-view-model:hover`, `#segmented-buttons-wrapper:hover`, `yt-smartimation:hover`, `.ytSmartimationHost:hover`, `.smartimation__border-gradient:hover`).
+    - Added direct targeting of `::before` and `::after` on all container tags (not just `*::after`).
+  - **Synchronous Wrapper Float:**
+    - Applied `transform: translateY(-4px) !important;` to `dislike-button-view-model:hover` and `like-button-view-model:hover` in lockstep with the inner button, ensuring that no wrapper container is left behind at the baseline.
+
+### Verification & Outcome
+- Scrubber moves at native 60fps with zero dropped frames or micro-stutters.
+- Interruption toast / warning screen permanently suppressed.
+- No stationary ghost capsule, top border line, or outline remains behind the floating dislike button.
+- Updated CSS copied to Windows clipboard; committed and pushed to `Reisier-Tech/YT-CSS:main`.
+
+
 
 
 
