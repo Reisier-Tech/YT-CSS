@@ -764,6 +764,61 @@ Deep profiling of [`css/youtube-enhancer-theme.css`](file:///c:/Users/conbo/Docu
   - Buttons expand dynamically to fit any text length comfortably.
   - Updated CSS copied to Windows clipboard; committed and pushed to `Reisier-Tech/YT-CSS:main`.
 
+---
+
+### Entry 27: Restore Original (OG) YouTube Search Results Layout & Proportions - (Retries: 0) - (Status: Resolved)
+- **Symptom / Objective:**
+  - The user uploaded a screenshot ([`media_1795020296167_5390d701.jpg`](file:///C:/Users/conbo/.gemini/antigravity/brain/87c67d7d-4fad-4867-adff-de7c8e5cf0a6/.user_uploaded/media_1795020296167_5390d701.jpg)) showing YouTube Search Results cramped with zero vertical spacing (thumbnails touching directly), giant blown-up thumbnails, a dark clunky box container around playlists, and an invasive AI summary (*"✦ Tóm tắt..."*) banner.
+  - User request: `"what happened to this layout bruh... look at the original and fix it"`.
+
+- **Root Cause & Technical Analysis:**
+  1. **Zero-Margin Collapse:** `ytd-video-renderer` had previously been grouped alongside `ytd-rich-item-renderer` under `margin-top: 0 !important; padding: 0 !important;` (intended for home grid alignment). Because search results render as vertical stack items, setting `margin-top: 0` caused every search result card to touch the item above it with zero breathing space.
+  2. **Giant Thumbnail Distortion:** YouTube's new search redesign experiment removed the classic `360px` max-width constraint, letting search thumbnails expand to 400px–500px+ (taking up ~45% of the screen width and allowing only 2 items per viewport).
+  3. **Visual Clutter & Card Bloat:** YouTube started wrapping search playlists in dark grey card wrappers with nested video links, and injected AI video summaries (`ytd-expandable-metadata-renderer`) at the bottom of search cards, stretching the cards vertically.
+
+- **Fix / Modifications Applied:**
+  - **File:** [`css/youtube-enhancer-theme.css`](file:///c:/Users/conbo/Documents/antigravity/busy-galileo/css/youtube-enhancer-theme.css)
+    1. **Restored Natural Search Item Spacing:**
+       - Removed `ytd-video-renderer` from the `margin-top: 0` grid rule.
+       - Re-established classic 16px vertical rhythm on search results:
+         ```css
+         ytd-search ytd-video-renderer,
+         ytd-search ytd-playlist-renderer,
+         ytd-search ytd-radio-renderer,
+         ytd-search ytd-channel-renderer {
+           margin-top: 16px !important;
+           margin-bottom: 16px !important;
+           padding: 0 !important;
+         }
+         ```
+    2. **Classic 16:9 Thumbnail Proportion Clamp:**
+       - Forced search thumbnails to lock back to original YouTube dimensions:
+         ```css
+         ytd-search ytd-video-renderer ytd-thumbnail,
+         ytd-search ytd-playlist-renderer ytd-thumbnail,
+         ytd-search ytd-radio-renderer ytd-thumbnail,
+         ytd-search ytd-video-renderer #thumbnail,
+         ytd-video-renderer #thumbnail.ytd-video-renderer {
+           width: 360px !important;
+           min-width: 240px !important;
+           max-width: 360px !important;
+           height: auto !important;
+           aspect-ratio: 16 / 9 !important;
+           flex: none !important;
+           flex-shrink: 0 !important;
+         }
+         ```
+    3. **Eradicated Clutter & Clunky Boxes:**
+       - Stripped the grey card background and border from `ytd-search ytd-playlist-renderer`.
+       - Hidden the bloated AI summary bar (`ytd-search ytd-expandable-metadata-renderer, ytd-search #expandable-metadata { display: none !important; }`).
+       - Harmonized search typography (`#video-title`, `#channel-info`, `#metadata-line`, `#description-text`).
+
+- **Verification & Outcome:**
+  - Search results display with natural, clean 16px spacing between videos (thumbnails no longer touch).
+  - Thumbnails restored to classic 360px width, leaving clean horizontal room for title, channel byline, and description.
+  - Playlist grey box and AI summary banner cleanly eliminated.
+  - Updated CSS copied to Windows clipboard; committed and pushed to `Reisier-Tech/YT-CSS:main`.
+
 
 
 

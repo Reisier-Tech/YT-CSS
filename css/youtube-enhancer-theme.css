@@ -376,11 +376,102 @@ ytd-thumbnail a.ytd-thumbnail,
 
 /* Keep grid items at 100% native layout so all 3+ columns stay on the same line */
 ytd-rich-item-renderer,
-ytd-grid-video-renderer,
-ytd-video-renderer {
+ytd-grid-video-renderer {
   padding: 0 !important;
   margin-top: 0 !important;
   box-sizing: border-box !important;
+}
+
+/* --------------------------------------------------------------------------
+   🔍 5.1. SEARCH RESULTS: RESTORE ORIGINAL (OG) YOUTUBE SEARCH LAYOUT
+   (Fixes cramped 0-margin search results, giant thumbnails & AI summary bloat)
+   -------------------------------------------------------------------------- */
+/* Proper vertical spacing between search items (restores natural 16px rhythm) */
+ytd-search ytd-video-renderer,
+ytd-search ytd-playlist-renderer,
+ytd-search ytd-radio-renderer,
+ytd-search ytd-channel-renderer {
+  margin-top: 16px !important;
+  margin-bottom: 16px !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Force Classic Proportions on Search Thumbnails (Prevents giant oversized thumbnails) */
+ytd-search ytd-video-renderer ytd-thumbnail,
+ytd-search ytd-playlist-renderer ytd-thumbnail,
+ytd-search ytd-radio-renderer ytd-thumbnail,
+ytd-search ytd-video-renderer #thumbnail,
+ytd-video-renderer #thumbnail.ytd-video-renderer {
+  width: 360px !important;
+  min-width: 240px !important;
+  max-width: 360px !important;
+  height: auto !important;
+  aspect-ratio: 16 / 9 !important;
+  flex: none !important;
+  flex-shrink: 0 !important;
+}
+
+ytd-search ytd-video-renderer ytd-thumbnail img,
+ytd-search ytd-playlist-renderer ytd-thumbnail img,
+ytd-search ytd-video-renderer #thumbnail img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+/* Search Results Flex Row Alignment */
+ytd-search ytd-video-renderer #dismissible,
+ytd-search ytd-playlist-renderer #content {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  gap: 16px !important;
+}
+
+/* Playlist search card: remove awkward grey background container */
+ytd-search ytd-playlist-renderer {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Hide bloated AI summary / expandable metadata clutter in search results */
+ytd-search ytd-expandable-metadata-renderer,
+ytd-search #expandable-metadata,
+ytd-search .ytd-expandable-metadata-renderer {
+  display: none !important;
+}
+
+/* Title & metadata readability in search results */
+ytd-search ytd-video-renderer #video-title,
+ytd-search ytd-playlist-renderer #video-title {
+  font-size: 18px !important;
+  line-height: 26px !important;
+  font-weight: 500 !important;
+  font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+}
+
+ytd-search ytd-video-renderer #channel-info {
+  padding: 6px 0 !important;
+}
+
+ytd-search ytd-video-renderer #metadata-line,
+ytd-search ytd-video-renderer ytd-video-meta-block {
+  font-size: 12px !important;
+  line-height: 18px !important;
+  color: #aaaaaa !important;
+  font-family: 'Nunito', 'Segoe UI', sans-serif !important;
+}
+
+ytd-search ytd-video-renderer #description-text,
+ytd-search ytd-video-renderer .metadata-snippet-container {
+  font-size: 12px !important;
+  line-height: 18px !important;
+  color: #888888 !important;
+  max-height: 36px !important;
+  overflow: hidden !important;
 }
 
 /* Thumbnail Hover Micro-Animation: subtle float + glow without distorting grid width */
